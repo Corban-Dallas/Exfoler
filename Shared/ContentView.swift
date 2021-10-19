@@ -12,40 +12,64 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Portfolio.name, ascending: true)],
         animation: .default)
-    private var items: FetchedResults<Item>
+    private var portfolios: FetchedResults<Portfolio>
+    @State var searchText: String = ""
 
     var body: some View {
         NavigationView {
+            portfolioList
+            Text("Select a stock")
+
+        }
+    }
+    
+    // MARK: Build blocks
+    private var portfolioList: some View {
+        VStack {
+            SearchField(text: $searchText)
+                .padding(.horizontal, 15)
             List {
-                ForEach(items) { item in
-                    NavigationLink(destination: Text("Item at \(item.timestamp!, formatter: itemFormatter)")) {
-                        Text(item.timestamp!, formatter: itemFormatter)
+                Section(header: Text("Portfolios")) {
+                    ForEach(portfolios) { portfolio in
+                        NavigationLink(destination: PortfolioView(portfolio: portfolio)) {
+                            Text(portfolio.name!)
+                        }
                     }
+                    .onDelete(perform: deletePortfolios)
+
                 }
-                .onDelete(perform: deleteItems)
             }
             .toolbar {
-#if os(iOS)
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-#endif
                 ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                    Button(action: addPortfolio) {
+                        Label("Add Stock", systemImage: "plus")
+                    }
+                }
+                ToolbarItem(placement: .destructiveAction) {
+                    Button {
+                        portfolios.forEach(viewContext.delete)
+                        do {
+                            try viewContext.save()
+                        } catch {
+                            print(error)
+                        }
+                    } label: {
+                        Label("Delete all", systemImage: "trash")
                     }
                 }
             }
-            Text("Select an item")
         }
     }
-
-    private func addItem() {
+    
+    
+    // MARK: - User intents
+    private func addPortfolio() {
         withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+            let newPortfolio = Portfolio(context: viewContext)
+            newPortfolio.name = "Portfolio \(portfolios.count)"
+            newPortfolio.id = UUID()
 
             do {
                 try viewContext.save()
@@ -58,9 +82,9 @@ struct ContentView: View {
         }
     }
 
-    private func deleteItems(offsets: IndexSet) {
+    private func deletePortfolios(offsets: IndexSet) {
         withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
+            offsets.map { portfolios[$0] }.forEach(viewContext.delete)
 
             do {
                 try viewContext.save()
@@ -74,15 +98,8 @@ struct ContentView: View {
     }
 }
 
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+//    }
+//}

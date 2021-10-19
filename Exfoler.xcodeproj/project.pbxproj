@@ -7,16 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F7AFCECB271D5B2700D56A71 /* Exfoler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEB8271D5B2600D56A71 /* Exfoler.xcdatamodeld */; };
 		F7AFCECC271D5B2700D56A71 /* Exfoler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEB8271D5B2600D56A71 /* Exfoler.xcdatamodeld */; };
-		F7AFCECD271D5B2700D56A71 /* ExfolerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEBA271D5B2600D56A71 /* ExfolerApp.swift */; };
 		F7AFCECE271D5B2700D56A71 /* ExfolerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEBA271D5B2600D56A71 /* ExfolerApp.swift */; };
-		F7AFCECF271D5B2700D56A71 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEBB271D5B2600D56A71 /* ContentView.swift */; };
 		F7AFCED0271D5B2700D56A71 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEBB271D5B2600D56A71 /* ContentView.swift */; };
-		F7AFCED1271D5B2700D56A71 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEBC271D5B2600D56A71 /* Persistence.swift */; };
 		F7AFCED2271D5B2700D56A71 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEBC271D5B2600D56A71 /* Persistence.swift */; };
-		F7AFCED3271D5B2700D56A71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7AFCEBD271D5B2700D56A71 /* Assets.xcassets */; };
 		F7AFCED4271D5B2700D56A71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7AFCEBD271D5B2700D56A71 /* Assets.xcassets */; };
+		F7AFCEDF271D5BA900D56A71 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEDD271D5BA900D56A71 /* Sidebar.swift */; };
+		F7AFCEE6271D659C00D56A71 /* PolygonAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEE4271D659C00D56A71 /* PolygonAPI.swift */; };
+		F7AFCEEA271D6D9800D56A71 /* PolygonAPI.Responses.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEE8271D6D9800D56A71 /* PolygonAPI.Responses.swift */; };
+		F7AFCEEE271D7AA900D56A71 /* AssetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEEC271D7AA900D56A71 /* AssetView.swift */; };
+		F7AFCEF1271DAA2500D56A71 /* PortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEEF271DAA2500D56A71 /* PortfolioView.swift */; };
+		F7AFCF0E271F23CE00D56A71 /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEF2271F079F00D56A71 /* SearchField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,19 +26,23 @@
 		F7AFCEBB271D5B2600D56A71 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F7AFCEBC271D5B2600D56A71 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		F7AFCEBD271D5B2700D56A71 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F7AFCEC2271D5B2700D56A71 /* Exfoler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Exfoler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7AFCEC8271D5B2700D56A71 /* Exfoler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Exfoler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7AFCECA271D5B2700D56A71 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		F7AFCEDD271D5BA900D56A71 /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
+		F7AFCEE4271D659C00D56A71 /* PolygonAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolygonAPI.swift; sourceTree = "<group>"; };
+		F7AFCEE8271D6D9800D56A71 /* PolygonAPI.Responses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolygonAPI.Responses.swift; sourceTree = "<group>"; };
+		F7AFCEEC271D7AA900D56A71 /* AssetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetView.swift; sourceTree = "<group>"; };
+		F7AFCEEF271DAA2500D56A71 /* PortfolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioView.swift; sourceTree = "<group>"; };
+		F7AFCEF2271F079F00D56A71 /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
+		F7AFCEFD271F235C00D56A71 /* exfolioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = exfolioApp.swift; sourceTree = "<group>"; };
+		F7AFCEFF271F235C00D56A71 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F7AFCF01271F235E00D56A71 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F7AFCF04271F235E00D56A71 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F7AFCF06271F235E00D56A71 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		F7AFCF09271F235E00D56A71 /* exfolio.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = exfolio.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		F7AFCEBF271D5B2700D56A71 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F7AFCEC5271D5B2700D56A71 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -53,6 +58,7 @@
 			children = (
 				F7AFCEB7271D5B2600D56A71 /* Shared */,
 				F7AFCEC9271D5B2700D56A71 /* macOS */,
+				F7AFCEFC271F235C00D56A71 /* exfolio */,
 				F7AFCEC3271D5B2700D56A71 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -60,9 +66,11 @@
 		F7AFCEB7271D5B2600D56A71 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				F7AFCEF5271F104C00D56A71 /* Views */,
+				F7AFCEEB271D6DA500D56A71 /* PolygonAPI */,
+				F7AFCEE7271D65A100D56A71 /* Model */,
 				F7AFCEBA271D5B2600D56A71 /* ExfolerApp.swift */,
 				F7AFCEBB271D5B2600D56A71 /* ContentView.swift */,
-				F7AFCEBC271D5B2600D56A71 /* Persistence.swift */,
 				F7AFCEBD271D5B2700D56A71 /* Assets.xcassets */,
 				F7AFCEB8271D5B2600D56A71 /* Exfoler.xcdatamodeld */,
 			);
@@ -72,7 +80,6 @@
 		F7AFCEC3271D5B2700D56A71 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F7AFCEC2271D5B2700D56A71 /* Exfoler.app */,
 				F7AFCEC8271D5B2700D56A71 /* Exfoler.app */,
 			);
 			name = Products;
@@ -86,26 +93,58 @@
 			path = macOS;
 			sourceTree = "<group>";
 		};
+		F7AFCEE7271D65A100D56A71 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F7AFCEBC271D5B2600D56A71 /* Persistence.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F7AFCEEB271D6DA500D56A71 /* PolygonAPI */ = {
+			isa = PBXGroup;
+			children = (
+				F7AFCEE4271D659C00D56A71 /* PolygonAPI.swift */,
+				F7AFCEE8271D6D9800D56A71 /* PolygonAPI.Responses.swift */,
+			);
+			path = PolygonAPI;
+			sourceTree = "<group>";
+		};
+		F7AFCEF5271F104C00D56A71 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F7AFCEF2271F079F00D56A71 /* SearchField.swift */,
+				F7AFCEEF271DAA2500D56A71 /* PortfolioView.swift */,
+				F7AFCEEC271D7AA900D56A71 /* AssetView.swift */,
+				F7AFCEDD271D5BA900D56A71 /* Sidebar.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F7AFCEFC271F235C00D56A71 /* exfolio */ = {
+			isa = PBXGroup;
+			children = (
+				F7AFCEFD271F235C00D56A71 /* exfolioApp.swift */,
+				F7AFCEFF271F235C00D56A71 /* ContentView.swift */,
+				F7AFCF01271F235E00D56A71 /* Assets.xcassets */,
+				F7AFCF06271F235E00D56A71 /* Persistence.swift */,
+				F7AFCF08271F235E00D56A71 /* exfolio.xcdatamodeld */,
+				F7AFCF03271F235E00D56A71 /* Preview Content */,
+			);
+			path = exfolio;
+			sourceTree = "<group>";
+		};
+		F7AFCF03271F235E00D56A71 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				F7AFCF04271F235E00D56A71 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F7AFCEC1271D5B2700D56A71 /* Exfoler (iOS) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F7AFCED7271D5B2700D56A71 /* Build configuration list for PBXNativeTarget "Exfoler (iOS)" */;
-			buildPhases = (
-				F7AFCEBE271D5B2700D56A71 /* Sources */,
-				F7AFCEBF271D5B2700D56A71 /* Frameworks */,
-				F7AFCEC0271D5B2700D56A71 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Exfoler (iOS)";
-			productName = "Exfoler (iOS)";
-			productReference = F7AFCEC2271D5B2700D56A71 /* Exfoler.app */;
-			productType = "com.apple.product-type.application";
-		};
 		F7AFCEC7271D5B2700D56A71 /* Exfoler (macOS) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F7AFCEDA271D5B2700D56A71 /* Build configuration list for PBXNativeTarget "Exfoler (macOS)" */;
@@ -133,9 +172,6 @@
 				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1300;
 				TargetAttributes = {
-					F7AFCEC1271D5B2700D56A71 = {
-						CreatedOnToolsVersion = 13.0;
-					};
 					F7AFCEC7271D5B2700D56A71 = {
 						CreatedOnToolsVersion = 13.0;
 					};
@@ -154,21 +190,12 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F7AFCEC1271D5B2700D56A71 /* Exfoler (iOS) */,
 				F7AFCEC7271D5B2700D56A71 /* Exfoler (macOS) */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		F7AFCEC0271D5B2700D56A71 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F7AFCED3271D5B2700D56A71 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F7AFCEC6271D5B2700D56A71 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -180,24 +207,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		F7AFCEBE271D5B2700D56A71 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F7AFCECB271D5B2700D56A71 /* Exfoler.xcdatamodeld in Sources */,
-				F7AFCED1271D5B2700D56A71 /* Persistence.swift in Sources */,
-				F7AFCECD271D5B2700D56A71 /* ExfolerApp.swift in Sources */,
-				F7AFCECF271D5B2700D56A71 /* ContentView.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F7AFCEC4271D5B2700D56A71 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7AFCEDF271D5BA900D56A71 /* Sidebar.swift in Sources */,
+				F7AFCEEE271D7AA900D56A71 /* AssetView.swift in Sources */,
 				F7AFCECC271D5B2700D56A71 /* Exfoler.xcdatamodeld in Sources */,
 				F7AFCED2271D5B2700D56A71 /* Persistence.swift in Sources */,
+				F7AFCEE6271D659C00D56A71 /* PolygonAPI.swift in Sources */,
 				F7AFCECE271D5B2700D56A71 /* ExfolerApp.swift in Sources */,
+				F7AFCEEA271D6D9800D56A71 /* PolygonAPI.Responses.swift in Sources */,
+				F7AFCF0E271F23CE00D56A71 /* SearchField.swift in Sources */,
+				F7AFCEF1271DAA2500D56A71 /* PortfolioView.swift in Sources */,
 				F7AFCED0271D5B2700D56A71 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -316,67 +338,6 @@
 			};
 			name = Release;
 		};
-		F7AFCED8271D5B2700D56A71 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = J4AL2MH8ZC;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Grigory-Krivyakin.Exfoler";
-				PRODUCT_NAME = Exfoler;
-				SDKROOT = iphoneos;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		F7AFCED9271D5B2700D56A71 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = J4AL2MH8ZC;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Grigory-Krivyakin.Exfoler";
-				PRODUCT_NAME = Exfoler;
-				SDKROOT = iphoneos;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 		F7AFCEDB271D5B2700D56A71 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -445,15 +406,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F7AFCED7271D5B2700D56A71 /* Build configuration list for PBXNativeTarget "Exfoler (iOS)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F7AFCED8271D5B2700D56A71 /* Debug */,
-				F7AFCED9271D5B2700D56A71 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		F7AFCEDA271D5B2700D56A71 /* Build configuration list for PBXNativeTarget "Exfoler (macOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -473,6 +425,16 @@
 			);
 			currentVersion = F7AFCEB9271D5B2600D56A71 /* Shared.xcdatamodel */;
 			path = Exfoler.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		F7AFCF08271F235E00D56A71 /* exfolio.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F7AFCF09271F235E00D56A71 /* exfolio.xcdatamodel */,
+			);
+			currentVersion = F7AFCF09271F235E00D56A71 /* exfolio.xcdatamodel */;
+			path = exfolio.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

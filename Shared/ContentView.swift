@@ -7,57 +7,73 @@
 
 import SwiftUI
 import CoreData
+import Combine
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @EnvironmentObject var dataFetcher: DataFetcher
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Portfolio.name, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Portfolio.name_, ascending: true)],
         animation: .default)
     private var portfolios: FetchedResults<Portfolio>
-    @State var searchText: String = ""
+    
 
     var body: some View {
         NavigationView {
-            portfolioList
-            Text("Select a stock")
+            VStack {
+                searchField
+                List {
+                    portfolioList
+                }
+                .toolbar {
+                    ToolbarItem {
+                        Button(action: addPortfolio) {
+                            Label("Add Stock", systemImage: "plus")
+                        }
+                    }
+                    ToolbarItem(placement: .destructiveAction) {
+                        Button {
+                            portfolios.forEach(viewContext.delete)
+                            do {
+                                try viewContext.save()
+                            } catch {
+                                print(error)
+                            }
+                        } label: {
+                            Label("Delete all", systemImage: "trash")
+                        }
+                    }
+                }
 
+            }
         }
     }
     
     // MARK: Build blocks
-    private var portfolioList: some View {
-        VStack {
-            SearchField(text: $searchText)
-                .padding(.horizontal, 15)
-            List {
-                Section(header: Text("Portfolios")) {
-                    ForEach(portfolios) { portfolio in
-                        NavigationLink(destination: PortfolioView(portfolio: portfolio)) {
-                            Text(portfolio.name!)
-                        }
-                    }
-                    .onDelete(perform: deletePortfolios)
+    @State var searchText: String = ""
+    @State private var showSearchResults = false
 
-                }
+    private var searchField: some View {
+        ZStack {
+            NavigationLink(destination: SearchResultsView(assets: $dataFetcher.searchResults), isActive: $showSearchResults) {
+                // Empty
+            }.opacity(0)
+            
+            SearchField(text: $searchText) { _ in } onCommit: {
+                print("Commit: \(searchText)")
+                dataFetcher.searchAssets(text: searchText)
+                showSearchResults = true
             }
-            .toolbar {
-                ToolbarItem {
-                    Button(action: addPortfolio) {
-                        Label("Add Stock", systemImage: "plus")
-                    }
-                }
-                ToolbarItem(placement: .destructiveAction) {
-                    Button {
-                        portfolios.forEach(viewContext.delete)
-                        do {
-                            try viewContext.save()
-                        } catch {
-                            print(error)
-                        }
-                    } label: {
-                        Label("Delete all", systemImage: "trash")
-                    }
+            .padding(.horizontal, 15)
+        }
+    }
+    
+    private var portfolioList: some View {
+        Section(header: Text("Portfolios")) {
+            ForEach(portfolios) { portfolio in
+                NavigationLink(destination: PortfolioView(portfolio: portfolio)) {
+                    Text(portfolio.name)
                 }
             }
         }

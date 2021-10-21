@@ -9,53 +9,52 @@ import Foundation
 import Combine
 
 class PolygonAPI {
-    static private let baseURL: String = "https://api.polygon.io"
     static private let agent = Agent()
+    static private let urlComponents: URLComponents = {
+        var uc = URLComponents()
+        uc.scheme = "https"
+        uc.host = "api.polygon.io"
+        uc.queryItems = [URLQueryItem(name: "apiKey", value: "c5TTKPWNlgFyYCTGgU3iLS0K93hcpWx9")]
+        return uc
+    }()
     
     
-    static func dailyOpenClose(symbol: String, date: Date? = nil) -> AnyPublisher<(openPrice: Double, closePrice: Double), Never> {
-        var stringURL = baseURL
-        stringURL.append("/v1/open-close/\(symbol)")
-        
+    static func tickers(search: String) -> AnyPublisher<TickersResponse, Error> {
+        var uc = urlComponents
+        uc.path = "/v3/reference/tickers"
+        uc.queryItems!.append(contentsOf: [
+            URLQueryItem(name: "search", value: search),
+            URLQueryItem(name: "active", value: "true"),
+            URLQueryItem(name: "sort", value: "ticker"),
+            URLQueryItem(name: "order", value: "asc"),
+            URLQueryItem(name: "limit", value: "10"),
+            ])
+        let url = uc.url!
+        print(url)
+
+        let request = URLRequest(url: url)
+        return agent.run(request)
+    }
+    
+    static func dailyOpenClose(symbol: String, date: Date? = nil) -> AnyPublisher<DailyOpenCloseResponse, Error> {
+        var uc = urlComponents
+        uc.path = "/v1/open-close/\(symbol)"
+
         let date = date ?? Calendar.current.date(byAdding: .year, value: -1, to: Date() )!
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "/yyyy-MM-dd"
-        stringURL.append( dateFormatter.string(from: date))
+        uc.path = dateFormatter.string(from: date)
                           
-        stringURL.append("?adjusted=true&apiKey=c5TTKPWNlgFyYCTGgU3iLS0K93hcpWx9")
-        print(stringURL)
-        let url = URL(string: stringURL)!
-        let request = URLRequest(url: url)
-        
-        return URLSession.shared
-            .dataTaskPublisher(for: request)
-            .tryMap { result -> (Double, Double) in
-                let value = try JSONDecoder().decode(DailyOpenCloseResponse.self, from: result.data)
-                return (value.open, value.close)
-            }
-            .catch { (error) -> AnyPublisher<(openPrice: Double, closePrice: Double), Never> in
-                //print(error)
-                return Just((openPrice: 1.0, closePrice: 1.0))
-                    .eraseToAnyPublisher()
-            }
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
+        let request = URLRequest(url: uc.url!)
+        return agent.run(request)
     }
     
     static func previousClose(ticker: String) -> AnyPublisher<PreviousCloseResponse, Error> {
-        var stringURL = baseURL
-        stringURL.append("/v2/aggs/ticker/\(ticker)/prev")
-        stringURL.append("?adjusted=true&apiKey=c5TTKPWNlgFyYCTGgU3iLS0K93hcpWx9")
-        print(stringURL)
+        var uc = urlComponents
+        uc.path = "/v2/aggs/ticker/\(ticker)/prev"
         
-        let url = URL(string: stringURL)!
-        let request = URLRequest(url: url)
-        return URLSession.shared
-            .dataTaskPublisher(for: request)
-            .tryMap(\.data)
-            .decode(type: PreviousCloseResponse.self, decoder: JSONDecoder())
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
+        let request = URLRequest(url: uc.url!)
+        return agent.run(request)
     }
     
 }
@@ -66,13 +65,11 @@ struct Agent {
         let response: URLResponse
     }
     
-    func run<T: Decodable>(_ request: URLRequest, _ decoder: JSONDecoder = JSONDecoder()) -> AnyPublisher<Response<T>, Error> {
+    func run<T: Decodable>(_ request: URLRequest) -> AnyPublisher<T, Error> {
         URLSession.shared
             .dataTaskPublisher(for: request)
-            .tryMap { result -> Response<T> in
-                let value = try decoder.decode(T.self, from: result.data)
-                return Response(value: value, response: result.response)
-            }
+            .tryMap(\.data)
+            .decode(type: T.self, decoder: JSONDecoder())
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }

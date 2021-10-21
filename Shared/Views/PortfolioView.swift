@@ -17,14 +17,14 @@ struct PortfolioView: View {
     init(portfolio: Portfolio) {
         self.portfolio = portfolio
         let request = NSFetchRequest<Asset>(entityName: "Asset")
-        request.predicate = NSPredicate(format: "portfolio.id = %@", portfolio.id! as CVarArg)
-        request.sortDescriptors = [NSSortDescriptor(keyPath: \Asset.ticker, ascending: true)]
+        request.predicate = NSPredicate(format: "portfolio.id_ = %@", portfolio.id as CVarArg)
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \Asset.ticker_, ascending: true)]
         _assets = FetchRequest(fetchRequest: request, animation: .default)
     }
     
     var body: some View {
         List(assets) { asset in
-            Text(asset.ticker ?? "N/A")
+            Text(asset.ticker)
         }
         .toolbar {
             addAssetButton

@@ -18,6 +18,11 @@
 		F7AFCEEE271D7AA900D56A71 /* AssetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEEC271D7AA900D56A71 /* AssetView.swift */; };
 		F7AFCEF1271DAA2500D56A71 /* PortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEEF271DAA2500D56A71 /* PortfolioView.swift */; };
 		F7AFCF0E271F23CE00D56A71 /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEF2271F079F00D56A71 /* SearchField.swift */; };
+		F7AFCF10271F593000D56A71 /* SearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCF0F271F593000D56A71 /* SearchResultsView.swift */; };
+		F7F2ADC32720111F00CFBF89 /* Portfolio.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F2ADC22720111F00CFBF89 /* Portfolio.swift */; };
+		F7F2ADC52720126700CFBF89 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F2ADC42720126700CFBF89 /* Asset.swift */; };
+		F7F2ADC72720304900CFBF89 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F2ADC62720304900CFBF89 /* TableView.swift */; };
+		F7F2ADCA2721BEE500CFBF89 /* DataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F2ADC92721BEE500CFBF89 /* DataFetcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +45,11 @@
 		F7AFCF04271F235E00D56A71 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F7AFCF06271F235E00D56A71 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		F7AFCF09271F235E00D56A71 /* exfolio.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = exfolio.xcdatamodel; sourceTree = "<group>"; };
+		F7AFCF0F271F593000D56A71 /* SearchResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsView.swift; sourceTree = "<group>"; };
+		F7F2ADC22720111F00CFBF89 /* Portfolio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Portfolio.swift; sourceTree = "<group>"; };
+		F7F2ADC42720126700CFBF89 /* Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
+		F7F2ADC62720304900CFBF89 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		F7F2ADC92721BEE500CFBF89 /* DataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +78,7 @@
 			children = (
 				F7AFCEF5271F104C00D56A71 /* Views */,
 				F7AFCEEB271D6DA500D56A71 /* PolygonAPI */,
+				F7F2ADCB2721BF1100CFBF89 /* ModelView */,
 				F7AFCEE7271D65A100D56A71 /* Model */,
 				F7AFCEBA271D5B2600D56A71 /* ExfolerApp.swift */,
 				F7AFCEBB271D5B2600D56A71 /* ContentView.swift */,
@@ -97,6 +108,8 @@
 			isa = PBXGroup;
 			children = (
 				F7AFCEBC271D5B2600D56A71 /* Persistence.swift */,
+				F7F2ADC22720111F00CFBF89 /* Portfolio.swift */,
+				F7F2ADC42720126700CFBF89 /* Asset.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -113,7 +126,8 @@
 		F7AFCEF5271F104C00D56A71 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F7AFCEF2271F079F00D56A71 /* SearchField.swift */,
+				F7F2ADC8272076C100CFBF89 /* AppKit */,
+				F7AFCF0F271F593000D56A71 /* SearchResultsView.swift */,
 				F7AFCEEF271DAA2500D56A71 /* PortfolioView.swift */,
 				F7AFCEEC271D7AA900D56A71 /* AssetView.swift */,
 				F7AFCEDD271D5BA900D56A71 /* Sidebar.swift */,
@@ -140,6 +154,23 @@
 				F7AFCF04271F235E00D56A71 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F7F2ADC8272076C100CFBF89 /* AppKit */ = {
+			isa = PBXGroup;
+			children = (
+				F7AFCEF2271F079F00D56A71 /* SearchField.swift */,
+				F7F2ADC62720304900CFBF89 /* TableView.swift */,
+			);
+			path = AppKit;
+			sourceTree = "<group>";
+		};
+		F7F2ADCB2721BF1100CFBF89 /* ModelView */ = {
+			isa = PBXGroup;
+			children = (
+				F7F2ADC92721BEE500CFBF89 /* DataFetcher.swift */,
+			);
+			path = ModelView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,13 +242,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7F2ADC32720111F00CFBF89 /* Portfolio.swift in Sources */,
+				F7F2ADC52720126700CFBF89 /* Asset.swift in Sources */,
 				F7AFCEDF271D5BA900D56A71 /* Sidebar.swift in Sources */,
+				F7F2ADCA2721BEE500CFBF89 /* DataFetcher.swift in Sources */,
+				F7F2ADC72720304900CFBF89 /* TableView.swift in Sources */,
 				F7AFCEEE271D7AA900D56A71 /* AssetView.swift in Sources */,
 				F7AFCECC271D5B2700D56A71 /* Exfoler.xcdatamodeld in Sources */,
 				F7AFCED2271D5B2700D56A71 /* Persistence.swift in Sources */,
 				F7AFCEE6271D659C00D56A71 /* PolygonAPI.swift in Sources */,
 				F7AFCECE271D5B2700D56A71 /* ExfolerApp.swift in Sources */,
 				F7AFCEEA271D6D9800D56A71 /* PolygonAPI.Responses.swift in Sources */,
+				F7AFCF10271F593000D56A71 /* SearchResultsView.swift in Sources */,
 				F7AFCF0E271F23CE00D56A71 /* SearchField.swift in Sources */,
 				F7AFCEF1271DAA2500D56A71 /* PortfolioView.swift in Sources */,
 				F7AFCED0271D5B2700D56A71 /* ContentView.swift in Sources */,

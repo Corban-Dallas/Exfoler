@@ -15,6 +15,7 @@ struct AssetView: View {
     @State var closePrice = 0.0
     
     var body: some View {
+        
         VStack {
             Text("Open: \(openPrice)")
             Text("Close: \(closePrice)")

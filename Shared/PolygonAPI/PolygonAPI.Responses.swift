@@ -8,6 +8,29 @@
 import Foundation
 
 extension PolygonAPI {
+    struct TickersResponse: Decodable, Hashable {
+        let status: String
+        let request_id: String
+        let count: Int
+        let results: [Results]
+        var next_url: String?
+        
+        struct Results: Decodable, Hashable {
+            let ticker: String
+            let name: String
+            let market: String
+            let locale: String
+            let primary_exchange: String
+            let type: String?
+            let active: Bool
+            let currency_name: String
+            let cik: String?
+            let composite_figi: String?
+            let share_class_figi: String?
+            let last_updated_utc: String
+        }
+    }
+    
     struct DailyOpenCloseResponse: Decodable {
         let status: String
         let from: Date

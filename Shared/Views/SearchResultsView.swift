@@ -8,17 +8,54 @@
 import SwiftUI
 
 struct SearchResultsView: View {
-    @Binding var assets: [Asset]?
+    @EnvironmentObject var dataFetcher: DataFetcher
+    private var assets: [Asset] {
+        dataFetcher.searchResults
+            .sorted(using: sortOrder)
+    }
+    
+    @State var selection = Set<Asset.ID>()
+    @State var sortOrder: [KeyPathComparator<Asset>] = [
+        .init(\.name, order: SortOrder.forward)
+    ]
+
+    
     var body: some View {
-        if let assets = assets {
-            List(assets) { asset in
-                Text(asset.name ?? "N/A")
+        Table(selection: $selection, sortOrder: $sortOrder) {
+            TableColumn("Name", value: \.name)
+            TableColumn("Ticker", value: \.ticker)
+            TableColumn("Price", value: \.currentPrice) { asset in
+                Text(asset.currentPrice.formatted())
             }
-        } else {
-            ProgressView()
+        } rows: {
+            ForEach(assets) { asset in
+                TableRow(asset)
+            }
+        }
+        .toolbar {
+            if dataFetcher.isSearching {
+                ProgressView()
+            }
         }
     }
 }
+
+private struct BoolComparator: SortComparator {
+    typealias Compared = Bool
+
+    func compare(_ lhs: Bool, _ rhs: Bool) -> ComparisonResult {
+        switch (lhs, rhs) {
+        case (true, false):
+            return order == .forward ? .orderedDescending : .orderedAscending
+        case (false, true):
+            return order == .forward ? .orderedAscending : .orderedDescending
+        default: return .orderedSame
+        }
+    }
+
+    var order: SortOrder = .forward
+}
+
 
 //struct SearchResultsView_Previews: PreviewProvider {
 //    static var previews: some View {

@@ -56,12 +56,12 @@ struct ContentView: View {
 
     private var searchField: some View {
         ZStack {
-            NavigationLink(destination: SearchResultsView(assets: $dataFetcher.searchResults), isActive: $showSearchResults) {
+            NavigationLink(destination: SearchResultsView(), isActive: $showSearchResults) {
                 // Empty
             }.opacity(0)
             
             SearchField(text: $searchText) { _ in } onCommit: {
-                print("Commit: \(searchText)")
+//                print("Commit: \(searchText)")
                 dataFetcher.searchAssets(text: searchText)
                 showSearchResults = true
             }

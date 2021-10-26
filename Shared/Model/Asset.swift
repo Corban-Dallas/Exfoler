@@ -19,4 +19,14 @@ extension Asset {
         get { ticker_ ?? "Unknown" }
         set { ticker_ = newValue }
     }
+    
+    var name: String {
+        get { name_ ?? "Unknown"}
+        set { name_ = newValue }
+    }
+    
+    var currentPrice: Double {
+        get { currentPrice_ }
+        set { currentPrice_ = newValue }
+    }
 }

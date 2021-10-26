@@ -36,9 +36,9 @@ class PolygonAPI {
         return agent.run(request)
     }
     
-    static func dailyOpenClose(symbol: String, date: Date? = nil) -> AnyPublisher<DailyOpenCloseResponse, Error> {
+    static func dailyOpenClose(ticker: String, date: Date? = nil) -> AnyPublisher<DailyOpenCloseResponse, Error> {
         var uc = urlComponents
-        uc.path = "/v1/open-close/\(symbol)"
+        uc.path = "/v1/open-close/\(ticker)"
 
         let date = date ?? Calendar.current.date(byAdding: .year, value: -1, to: Date() )!
         let dateFormatter = DateFormatter()

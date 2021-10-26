@@ -21,7 +21,6 @@
 		F7AFCF10271F593000D56A71 /* SearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCF0F271F593000D56A71 /* SearchResultsView.swift */; };
 		F7F2ADC32720111F00CFBF89 /* Portfolio.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F2ADC22720111F00CFBF89 /* Portfolio.swift */; };
 		F7F2ADC52720126700CFBF89 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F2ADC42720126700CFBF89 /* Asset.swift */; };
-		F7F2ADC72720304900CFBF89 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F2ADC62720304900CFBF89 /* TableView.swift */; };
 		F7F2ADCA2721BEE500CFBF89 /* DataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F2ADC92721BEE500CFBF89 /* DataFetcher.swift */; };
 /* End PBXBuildFile section */
 
@@ -48,7 +47,6 @@
 		F7AFCF0F271F593000D56A71 /* SearchResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsView.swift; sourceTree = "<group>"; };
 		F7F2ADC22720111F00CFBF89 /* Portfolio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Portfolio.swift; sourceTree = "<group>"; };
 		F7F2ADC42720126700CFBF89 /* Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
-		F7F2ADC62720304900CFBF89 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		F7F2ADC92721BEE500CFBF89 /* DataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,12 +74,12 @@
 		F7AFCEB7271D5B2600D56A71 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				F7AFCEF5271F104C00D56A71 /* Views */,
-				F7AFCEEB271D6DA500D56A71 /* PolygonAPI */,
-				F7F2ADCB2721BF1100CFBF89 /* ModelView */,
-				F7AFCEE7271D65A100D56A71 /* Model */,
 				F7AFCEBA271D5B2600D56A71 /* ExfolerApp.swift */,
 				F7AFCEBB271D5B2600D56A71 /* ContentView.swift */,
+				F7AFCEEB271D6DA500D56A71 /* PolygonAPI */,
+				F7AFCEE7271D65A100D56A71 /* Model */,
+				F7F2ADCB2721BF1100CFBF89 /* ModelView */,
+				F7AFCEF5271F104C00D56A71 /* Views */,
 				F7AFCEBD271D5B2700D56A71 /* Assets.xcassets */,
 				F7AFCEB8271D5B2600D56A71 /* Exfoler.xcdatamodeld */,
 			);
@@ -107,9 +105,9 @@
 		F7AFCEE7271D65A100D56A71 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F7F2ADC42720126700CFBF89 /* Asset.swift */,
 				F7AFCEBC271D5B2600D56A71 /* Persistence.swift */,
 				F7F2ADC22720111F00CFBF89 /* Portfolio.swift */,
-				F7F2ADC42720126700CFBF89 /* Asset.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -160,7 +158,6 @@
 			isa = PBXGroup;
 			children = (
 				F7AFCEF2271F079F00D56A71 /* SearchField.swift */,
-				F7F2ADC62720304900CFBF89 /* TableView.swift */,
 			);
 			path = AppKit;
 			sourceTree = "<group>";
@@ -246,7 +243,6 @@
 				F7F2ADC52720126700CFBF89 /* Asset.swift in Sources */,
 				F7AFCEDF271D5BA900D56A71 /* Sidebar.swift in Sources */,
 				F7F2ADCA2721BEE500CFBF89 /* DataFetcher.swift in Sources */,
-				F7F2ADC72720304900CFBF89 /* TableView.swift in Sources */,
 				F7AFCEEE271D7AA900D56A71 /* AssetView.swift in Sources */,
 				F7AFCECC271D5B2700D56A71 /* Exfoler.xcdatamodeld in Sources */,
 				F7AFCED2271D5B2700D56A71 /* Persistence.swift in Sources */,
@@ -392,7 +388,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Grigory-Krivyakin.Exfoler";
 				PRODUCT_NAME = Exfoler;
@@ -420,7 +416,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Grigory-Krivyakin.Exfoler";
 				PRODUCT_NAME = Exfoler;

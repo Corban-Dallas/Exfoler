@@ -9,24 +9,30 @@ import Foundation
 import Combine
 
 class DataFetcher: ObservableObject {
-    @Published var searchResults: [Asset]? = []
+    @Published var isSearching = false
+    @Published var searchResults: [Asset] = []
+    
     @Environment(\.managedObjectContext) private var viewContext
 
     private var cancellableSearch: AnyCancellable?
     
     public func searchAssets(text: String) {
-        searchResults = nil
-        cancellableSearch = PolygonAPI.tickers(search: text).sink(receiveCompletion: { error in  print(error)},
-                                                                  receiveValue: { [weak self] value in
-            let tickers: [Asset] = value.results.map {
-                let asset = Asset(context: self!.viewContext)
-                asset.ticker = $0.ticker
-                asset.name = $0.name
-                return asset
-            }
-            self?.searchResults = tickers
-            
-                    
-        })
+        isSearching = true
+        searchResults = []
+        cancellableSearch = PolygonAPI.tickers(search: text)
+            .print()
+            .sink { [weak self] error in
+                self?.isSearching = false
+//                print(error)
+            } receiveValue: { [weak self] value in
+                let tickers: [Asset] = value.results.map {
+                    let asset = Asset(context: self!.viewContext)
+                    asset.ticker = $0.ticker
+                    asset.name = $0.name
+                    return asset
+                }
+                self?.searchResults = tickers
+                self?.isSearching = false
+        }
     }
 }

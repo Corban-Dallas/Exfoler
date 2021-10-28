@@ -10,7 +10,7 @@ import Combine
 
 class PolygonAPI {
     static private let agent = Agent()
-    static private let urlComponents: URLComponents = {
+    static internal let urlComponents: URLComponents = {
         var uc = URLComponents()
         uc.scheme = "https"
         uc.host = "api.polygon.io"
@@ -19,23 +19,29 @@ class PolygonAPI {
     }()
     
     
+//    static func tickers(search: String) -> AnyPublisher<TickersResponse, Error> {
+//        var uc = urlComponents
+//        uc.path = "/v3/reference/tickers"
+//        uc.queryItems!.append(contentsOf: [
+//            URLQueryItem(name: "search", value: search),
+//            URLQueryItem(name: "active", value: "true"),
+//            URLQueryItem(name: "sort", value: "ticker"),
+//            URLQueryItem(name: "order", value: "asc"),
+//            URLQueryItem(name: "limit", value: "10"),
+//            ])
+//        let url = uc.url!
+//        print(url)
+//
+//        let request = URLRequest(url: url)
+//        return agent.run(request)
+//    }
     static func tickers(search: String) -> AnyPublisher<TickersResponse, Error> {
-        var uc = urlComponents
-        uc.path = "/v3/reference/tickers"
-        uc.queryItems!.append(contentsOf: [
-            URLQueryItem(name: "search", value: search),
-            URLQueryItem(name: "active", value: "true"),
-            URLQueryItem(name: "sort", value: "ticker"),
-            URLQueryItem(name: "order", value: "asc"),
-            URLQueryItem(name: "limit", value: "10"),
-            ])
-        let url = uc.url!
-        print(url)
-
-        let request = URLRequest(url: url)
-        return agent.run(request)
+        return TickersPublisher(search: search)
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
     }
-    
+
+        
     static func dailyOpenClose(ticker: String, date: Date? = nil) -> AnyPublisher<DailyOpenCloseResponse, Error> {
         var uc = urlComponents
         uc.path = "/v1/open-close/\(ticker)"

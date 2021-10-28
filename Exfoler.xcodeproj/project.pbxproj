@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F76F3DA3272A9C9900754DEF /* PolygonAPI.Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76F3DA2272A9C9900754DEF /* PolygonAPI.Publisher.swift */; };
 		F7AFCECC271D5B2700D56A71 /* Exfoler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEB8271D5B2600D56A71 /* Exfoler.xcdatamodeld */; };
 		F7AFCECE271D5B2700D56A71 /* ExfolerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEBA271D5B2600D56A71 /* ExfolerApp.swift */; };
 		F7AFCED0271D5B2700D56A71 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEBB271D5B2600D56A71 /* ContentView.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F76F3DA2272A9C9900754DEF /* PolygonAPI.Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolygonAPI.Publisher.swift; sourceTree = "<group>"; };
 		F7AFCEB9271D5B2600D56A71 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		F7AFCEBA271D5B2600D56A71 /* ExfolerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExfolerApp.swift; sourceTree = "<group>"; };
 		F7AFCEBB271D5B2600D56A71 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			children = (
 				F7AFCEE4271D659C00D56A71 /* PolygonAPI.swift */,
 				F7AFCEE8271D6D9800D56A71 /* PolygonAPI.Responses.swift */,
+				F76F3DA2272A9C9900754DEF /* PolygonAPI.Publisher.swift */,
 			);
 			path = PolygonAPI;
 			sourceTree = "<group>";
@@ -198,7 +201,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1300;
-				LastUpgradeCheck = 1300;
+				LastUpgradeCheck = 1310;
 				TargetAttributes = {
 					F7AFCEC7271D5B2700D56A71 = {
 						CreatedOnToolsVersion = 13.0;
@@ -251,6 +254,7 @@
 				F7AFCEEA271D6D9800D56A71 /* PolygonAPI.Responses.swift in Sources */,
 				F7AFCF10271F593000D56A71 /* SearchResultsView.swift in Sources */,
 				F7AFCF0E271F23CE00D56A71 /* SearchField.swift in Sources */,
+				F76F3DA3272A9C9900754DEF /* PolygonAPI.Publisher.swift in Sources */,
 				F7AFCEF1271DAA2500D56A71 /* PortfolioView.swift in Sources */,
 				F7AFCED0271D5B2700D56A71 /* ContentView.swift in Sources */,
 			);
@@ -376,6 +380,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -404,6 +409,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;

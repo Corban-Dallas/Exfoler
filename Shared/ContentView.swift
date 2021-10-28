@@ -18,7 +18,7 @@ struct ContentView: View {
         animation: .default)
     private var portfolios: FetchedResults<Portfolio>
     
-
+    @State var text = ""
     var body: some View {
         NavigationView {
             VStack {
@@ -45,8 +45,8 @@ struct ContentView: View {
                         }
                     }
                 }
-
             }
+            .searchable(text: $text)
         }
     }
     

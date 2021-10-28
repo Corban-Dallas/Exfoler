@@ -11,8 +11,9 @@ extension PolygonAPI {
     struct TickersResponse: Decodable, Hashable {
         let status: String
         let request_id: String
-        let count: Int
-        let results: [Results]
+        let error: String?
+        let count: Int?
+        let results: [Results]?
         var next_url: String?
         
         struct Results: Decodable, Hashable {

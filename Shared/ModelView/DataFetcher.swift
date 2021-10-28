@@ -25,14 +25,15 @@ class DataFetcher: ObservableObject {
                 self?.isSearching = false
 //                print(error)
             } receiveValue: { [weak self] value in
-                let tickers: [Asset] = value.results.map {
+                let tickers: [Asset]? = value.results?.map {
                     let asset = Asset(context: self!.viewContext)
                     asset.ticker = $0.ticker
                     asset.name = $0.name
                     return asset
                 }
-                self?.searchResults = tickers
-                self?.isSearching = false
+                if let tickers = tickers {
+                    self?.searchResults.append(contentsOf: tickers)
+                }
         }
     }
 }

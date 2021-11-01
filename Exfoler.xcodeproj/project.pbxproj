@@ -7,25 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F718B4E5272C68EB00CD07C7 /* AssetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F718B4E4272C68EB00CD07C7 /* AssetsView.swift */; };
 		F76F3DA3272A9C9900754DEF /* PolygonAPI.Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76F3DA2272A9C9900754DEF /* PolygonAPI.Publisher.swift */; };
 		F7AFCECC271D5B2700D56A71 /* Exfoler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEB8271D5B2600D56A71 /* Exfoler.xcdatamodeld */; };
 		F7AFCECE271D5B2700D56A71 /* ExfolerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEBA271D5B2600D56A71 /* ExfolerApp.swift */; };
 		F7AFCED0271D5B2700D56A71 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEBB271D5B2600D56A71 /* ContentView.swift */; };
 		F7AFCED2271D5B2700D56A71 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEBC271D5B2600D56A71 /* Persistence.swift */; };
 		F7AFCED4271D5B2700D56A71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7AFCEBD271D5B2700D56A71 /* Assets.xcassets */; };
-		F7AFCEDF271D5BA900D56A71 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEDD271D5BA900D56A71 /* Sidebar.swift */; };
 		F7AFCEE6271D659C00D56A71 /* PolygonAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEE4271D659C00D56A71 /* PolygonAPI.swift */; };
 		F7AFCEEA271D6D9800D56A71 /* PolygonAPI.Responses.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEE8271D6D9800D56A71 /* PolygonAPI.Responses.swift */; };
-		F7AFCEEE271D7AA900D56A71 /* AssetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEEC271D7AA900D56A71 /* AssetView.swift */; };
 		F7AFCEF1271DAA2500D56A71 /* PortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEEF271DAA2500D56A71 /* PortfolioView.swift */; };
 		F7AFCF0E271F23CE00D56A71 /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEF2271F079F00D56A71 /* SearchField.swift */; };
 		F7AFCF10271F593000D56A71 /* SearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCF0F271F593000D56A71 /* SearchResultsView.swift */; };
+		F7E8E39927305E5E00FD54F6 /* Asset+ItemProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E8E39827305E5E00FD54F6 /* Asset+ItemProvider.swift */; };
 		F7F2ADC32720111F00CFBF89 /* Portfolio.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F2ADC22720111F00CFBF89 /* Portfolio.swift */; };
 		F7F2ADC52720126700CFBF89 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F2ADC42720126700CFBF89 /* Asset.swift */; };
-		F7F2ADCA2721BEE500CFBF89 /* DataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F2ADC92721BEE500CFBF89 /* DataFetcher.swift */; };
+		F7F2ADCA2721BEE500CFBF89 /* SearchEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F2ADC92721BEE500CFBF89 /* SearchEngine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F718B4E4272C68EB00CD07C7 /* AssetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsView.swift; sourceTree = "<group>"; };
 		F76F3DA2272A9C9900754DEF /* PolygonAPI.Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolygonAPI.Publisher.swift; sourceTree = "<group>"; };
 		F7AFCEB9271D5B2600D56A71 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		F7AFCEBA271D5B2600D56A71 /* ExfolerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExfolerApp.swift; sourceTree = "<group>"; };
@@ -34,22 +35,16 @@
 		F7AFCEBD271D5B2700D56A71 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F7AFCEC8271D5B2700D56A71 /* Exfoler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Exfoler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7AFCECA271D5B2700D56A71 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
-		F7AFCEDD271D5BA900D56A71 /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
 		F7AFCEE4271D659C00D56A71 /* PolygonAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolygonAPI.swift; sourceTree = "<group>"; };
 		F7AFCEE8271D6D9800D56A71 /* PolygonAPI.Responses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolygonAPI.Responses.swift; sourceTree = "<group>"; };
-		F7AFCEEC271D7AA900D56A71 /* AssetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetView.swift; sourceTree = "<group>"; };
 		F7AFCEEF271DAA2500D56A71 /* PortfolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioView.swift; sourceTree = "<group>"; };
 		F7AFCEF2271F079F00D56A71 /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
-		F7AFCEFD271F235C00D56A71 /* exfolioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = exfolioApp.swift; sourceTree = "<group>"; };
-		F7AFCEFF271F235C00D56A71 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		F7AFCF01271F235E00D56A71 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F7AFCF04271F235E00D56A71 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		F7AFCF06271F235E00D56A71 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		F7AFCF09271F235E00D56A71 /* exfolio.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = exfolio.xcdatamodel; sourceTree = "<group>"; };
 		F7AFCF0F271F593000D56A71 /* SearchResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsView.swift; sourceTree = "<group>"; };
+		F7E8E39827305E5E00FD54F6 /* Asset+ItemProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Asset+ItemProvider.swift"; sourceTree = "<group>"; };
+		F7E8E3A22730673F00FD54F6 /* Exfoler--macOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Exfoler--macOS--Info.plist"; sourceTree = "<group>"; };
 		F7F2ADC22720111F00CFBF89 /* Portfolio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Portfolio.swift; sourceTree = "<group>"; };
 		F7F2ADC42720126700CFBF89 /* Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
-		F7F2ADC92721BEE500CFBF89 /* DataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcher.swift; sourceTree = "<group>"; };
+		F7F2ADC92721BEE500CFBF89 /* SearchEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEngine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,9 +61,9 @@
 		F7AFCEB2271D5B2500D56A71 = {
 			isa = PBXGroup;
 			children = (
+				F7E8E3A22730673F00FD54F6 /* Exfoler--macOS--Info.plist */,
 				F7AFCEB7271D5B2600D56A71 /* Shared */,
 				F7AFCEC9271D5B2700D56A71 /* macOS */,
-				F7AFCEFC271F235C00D56A71 /* exfolio */,
 				F7AFCEC3271D5B2700D56A71 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -108,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				F7F2ADC42720126700CFBF89 /* Asset.swift */,
+				F7E8E39827305E5E00FD54F6 /* Asset+ItemProvider.swift */,
 				F7AFCEBC271D5B2600D56A71 /* Persistence.swift */,
 				F7F2ADC22720111F00CFBF89 /* Portfolio.swift */,
 			);
@@ -129,32 +125,10 @@
 			children = (
 				F7F2ADC8272076C100CFBF89 /* AppKit */,
 				F7AFCF0F271F593000D56A71 /* SearchResultsView.swift */,
+				F718B4E4272C68EB00CD07C7 /* AssetsView.swift */,
 				F7AFCEEF271DAA2500D56A71 /* PortfolioView.swift */,
-				F7AFCEEC271D7AA900D56A71 /* AssetView.swift */,
-				F7AFCEDD271D5BA900D56A71 /* Sidebar.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		F7AFCEFC271F235C00D56A71 /* exfolio */ = {
-			isa = PBXGroup;
-			children = (
-				F7AFCEFD271F235C00D56A71 /* exfolioApp.swift */,
-				F7AFCEFF271F235C00D56A71 /* ContentView.swift */,
-				F7AFCF01271F235E00D56A71 /* Assets.xcassets */,
-				F7AFCF06271F235E00D56A71 /* Persistence.swift */,
-				F7AFCF08271F235E00D56A71 /* exfolio.xcdatamodeld */,
-				F7AFCF03271F235E00D56A71 /* Preview Content */,
-			);
-			path = exfolio;
-			sourceTree = "<group>";
-		};
-		F7AFCF03271F235E00D56A71 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				F7AFCF04271F235E00D56A71 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		F7F2ADC8272076C100CFBF89 /* AppKit */ = {
@@ -168,7 +142,7 @@
 		F7F2ADCB2721BF1100CFBF89 /* ModelView */ = {
 			isa = PBXGroup;
 			children = (
-				F7F2ADC92721BEE500CFBF89 /* DataFetcher.swift */,
+				F7F2ADC92721BEE500CFBF89 /* SearchEngine.swift */,
 			);
 			path = ModelView;
 			sourceTree = "<group>";
@@ -242,15 +216,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7E8E39927305E5E00FD54F6 /* Asset+ItemProvider.swift in Sources */,
 				F7F2ADC32720111F00CFBF89 /* Portfolio.swift in Sources */,
 				F7F2ADC52720126700CFBF89 /* Asset.swift in Sources */,
-				F7AFCEDF271D5BA900D56A71 /* Sidebar.swift in Sources */,
-				F7F2ADCA2721BEE500CFBF89 /* DataFetcher.swift in Sources */,
-				F7AFCEEE271D7AA900D56A71 /* AssetView.swift in Sources */,
+				F7F2ADCA2721BEE500CFBF89 /* SearchEngine.swift in Sources */,
 				F7AFCECC271D5B2700D56A71 /* Exfoler.xcdatamodeld in Sources */,
 				F7AFCED2271D5B2700D56A71 /* Persistence.swift in Sources */,
 				F7AFCEE6271D659C00D56A71 /* PolygonAPI.swift in Sources */,
 				F7AFCECE271D5B2700D56A71 /* ExfolerApp.swift in Sources */,
+				F718B4E5272C68EB00CD07C7 /* AssetsView.swift in Sources */,
 				F7AFCEEA271D6D9800D56A71 /* PolygonAPI.Responses.swift in Sources */,
 				F7AFCF10271F593000D56A71 /* SearchResultsView.swift in Sources */,
 				F7AFCF0E271F23CE00D56A71 /* SearchField.swift in Sources */,
@@ -388,6 +362,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Exfoler--macOS--Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -417,6 +392,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Exfoler--macOS--Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -463,16 +439,6 @@
 			);
 			currentVersion = F7AFCEB9271D5B2600D56A71 /* Shared.xcdatamodel */;
 			path = Exfoler.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		F7AFCF08271F235E00D56A71 /* exfolio.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				F7AFCF09271F235E00D56A71 /* exfolio.xcdatamodel */,
-			);
-			currentVersion = F7AFCF09271F235E00D56A71 /* exfolio.xcdatamodel */;
-			path = exfolio.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

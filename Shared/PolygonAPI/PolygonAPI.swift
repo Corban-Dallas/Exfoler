@@ -36,7 +36,17 @@ class PolygonAPI {
 //        return agent.run(request)
 //    }
     static func tickers(search: String) -> AnyPublisher<TickersResponse, Error> {
-        return TickersPublisher(search: search)
+        var uc = urlComponents
+        uc.path = "/v3/reference/tickers"
+        uc.queryItems!.append(contentsOf: [
+            URLQueryItem(name: "search", value: search),
+            URLQueryItem(name: "active", value: "true"),
+            URLQueryItem(name: "sort", value: "name"),
+            URLQueryItem(name: "order", value: "asc"),
+            URLQueryItem(name: "limit", value: "20"),
+            ])
+
+        return SequentialDataPublisher(firstUrl: uc.url!, nextUrl: \.next_url)
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }

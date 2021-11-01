@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct SearchResultsView: View {
-    @EnvironmentObject var dataFetcher: DataFetcher
+    @EnvironmentObject var dataFetcher: SearchEngine
+    @Environment(\.managedObjectContext) private var viewContext
+
     private var assets: [Asset] {
         dataFetcher.searchResults
             .sorted(using: sortOrder)
@@ -18,44 +20,31 @@ struct SearchResultsView: View {
     @State var sortOrder: [KeyPathComparator<Asset>] = [
         .init(\.name, order: SortOrder.forward)
     ]
-
     
     var body: some View {
         Table(selection: $selection, sortOrder: $sortOrder) {
             TableColumn("Name", value: \.name)
             TableColumn("Ticker", value: \.ticker)
-            TableColumn("Price", value: \.currentPrice) { asset in
-                Text(asset.currentPrice.formatted())
-            }
+            TableColumn("Type", value: \.type)
+            TableColumn("Locale", value: \.locale)
+            TableColumn("Currency", value: \.currency)
         } rows: {
             ForEach(assets) { asset in
-                TableRow(asset)
+                TableRow(asset).itemProvider { asset.itemProvider }
             }
         }
         .toolbar {
             if dataFetcher.isSearching {
                 ProgressView()
             }
+            Button {
+                try? viewContext.save()
+            } label: {
+                Text("Save")
+            }
         }
     }
 }
-
-private struct BoolComparator: SortComparator {
-    typealias Compared = Bool
-
-    func compare(_ lhs: Bool, _ rhs: Bool) -> ComparisonResult {
-        switch (lhs, rhs) {
-        case (true, false):
-            return order == .forward ? .orderedDescending : .orderedAscending
-        case (false, true):
-            return order == .forward ? .orderedAscending : .orderedDescending
-        default: return .orderedSame
-        }
-    }
-
-    var order: SortOrder = .forward
-}
-
 
 //struct SearchResultsView_Previews: PreviewProvider {
 //    static var previews: some View {

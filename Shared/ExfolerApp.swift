@@ -9,14 +9,14 @@ import SwiftUI
 
 @main
 struct ExfolerApp: App {
-    let persistenceController = PersistenceController.shared
-    @StateObject var dataFetcher = DataFetcher()
+    let context = PersistenceController.shared.container.viewContext
+    @StateObject var searchEngine = SearchEngine(context: PersistenceController.shared.container.viewContext)
 
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .environmentObject(dataFetcher)
+                .environment(\.managedObjectContext, context)
+                .environmentObject(searchEngine)
         }
     }
 }

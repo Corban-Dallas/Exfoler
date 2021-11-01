@@ -11,14 +11,13 @@ import Combine
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @EnvironmentObject var dataFetcher: DataFetcher
+    @EnvironmentObject var dataFetcher: SearchEngine
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Portfolio.name_, ascending: true)],
         animation: .default)
     private var portfolios: FetchedResults<Portfolio>
     
-    @State var text = ""
     var body: some View {
         NavigationView {
             VStack {
@@ -46,7 +45,6 @@ struct ContentView: View {
                     }
                 }
             }
-            .searchable(text: $text)
         }
     }
     
@@ -71,9 +69,24 @@ struct ContentView: View {
     
     private var portfolioList: some View {
         Section(header: Text("Portfolios")) {
+            NavigationLink(destination: AssetsView()) {
+                Text("All assets")
+            }
             ForEach(portfolios) { portfolio in
-                NavigationLink(destination: PortfolioView(portfolio: portfolio)) {
+                NavigationLink(destination: AssetsView(portfolio: portfolio)) {
                     Text(portfolio.name)
+                        .onDrop(of: [Asset.draggableType], isTargeted: nil) { providers in
+                            Asset.fromItemProviders(providers, context: viewContext) { assets in
+                                print("Dropped: ", assets)
+                                assets.forEach { $0.portfolio = portfolio }
+                            }
+                            do {
+                                try viewContext.save()
+                            } catch {
+                                print("Drop: ", error)
+                            }
+                            return true
+                        }
                 }
             }
         }

@@ -30,7 +30,6 @@ extension Asset {
                 let decoder = JSONDecoder()
                 guard let id = try? decoder.decode(Asset.ID.self, from: data)
                 else { return }
-                print("Decoded ID", id.uuidString)
                 result[index] = Asset.withID(id, in: context)
             }
         }
@@ -50,9 +49,7 @@ extension Asset {
         provider.registerDataRepresentation(forTypeIdentifier: Self.draggableType.identifier,
                                             visibility: .all) {
             do {
-                
                 let data = try JSONEncoder().encode(self.id)
-                print("Encoded ID", self.id.uuidString)
                 $0(data, nil)
             } catch {
                 $0(nil, error)

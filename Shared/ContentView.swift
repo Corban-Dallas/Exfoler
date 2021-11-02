@@ -23,32 +23,17 @@ struct ContentView: View {
             VStack {
                 searchField
                 List {
-                    portfolioList
+                    portfolioSection
                 }
                 .toolbar {
-                    ToolbarItem {
-                        Button(action: addPortfolio) {
-                            Label("Add Stock", systemImage: "plus")
-                        }
-                    }
-                    ToolbarItem(placement: .destructiveAction) {
-                        Button {
-                            portfolios.forEach(viewContext.delete)
-                            do {
-                                try viewContext.save()
-                            } catch {
-                                print(error)
-                            }
-                        } label: {
-                            Label("Delete all", systemImage: "trash")
-                        }
-                    }
+                    addPortfolioItem
+                    removeAllPortfoliosItem
                 }
             }
         }
     }
     
-    // MARK: Build blocks
+    // MARK: Search
     @State var searchText: String = ""
     @State private var showSearchResults = false
 
@@ -67,7 +52,8 @@ struct ContentView: View {
         }
     }
     
-    private var portfolioList: some View {
+    // MARK: Portfolios list
+    private var portfolioSection: some View {
         Section(header: Text("Portfolios")) {
             NavigationLink(destination: AssetsView()) {
                 Text("All assets")
@@ -75,23 +61,38 @@ struct ContentView: View {
             ForEach(portfolios) { portfolio in
                 NavigationLink(destination: AssetsView(portfolio: portfolio)) {
                     Text(portfolio.name)
-                        .onDrop(of: [Asset.draggableType], isTargeted: nil) { providers in
-                            Asset.fromItemProviders(providers, context: viewContext) { assets in
-                                print("Dropped: ", assets)
-                                assets.forEach { $0.portfolio = portfolio }
-                            }
-                            do {
-                                try viewContext.save()
-                            } catch {
-                                print("Drop: ", error)
-                            }
-                            return true
-                        }
                 }
+                .onDrop(of: [Asset.draggableType], isTargeted: nil) { providers in
+                    dropAssets(providers: providers, to: portfolio)
+                }
+
+            }
+        }
+    }
+    // MARK: - Toolbar
+    private var addPortfolioItem: ToolbarItem<Void, Button<Label<Text, Image>>> {
+        ToolbarItem {
+            Button(action: addPortfolio) {
+                Label("Add portfolio", systemImage: "plus")
             }
         }
     }
     
+    private var removeAllPortfoliosItem: ToolbarItem<Void, Button<Label<Text, Image>>> {
+        ToolbarItem(placement: .destructiveAction) {
+            Button {
+                portfolios.forEach(viewContext.delete)
+                do {
+                    try viewContext.save()
+                } catch {
+                    print(error)
+                }
+            } label: {
+                Label("Delete all", systemImage: "trash")
+            }
+        }
+    }
+
     
     // MARK: - User intents
     private func addPortfolio() {
@@ -110,7 +111,7 @@ struct ContentView: View {
             }
         }
     }
-
+    
     private func deletePortfolios(offsets: IndexSet) {
         withAnimation {
             offsets.map { portfolios[$0] }.forEach(viewContext.delete)
@@ -125,6 +126,25 @@ struct ContentView: View {
             }
         }
     }
+    
+    // MARK: Drag and drop
+    private func dropAssets(providers: [NSItemProvider], to portfolio: Portfolio) -> Bool {
+        let assetProviders = providers.filter {
+            $0.hasItemConformingToTypeIdentifier(Asset.draggableType.identifier)
+        }
+        Asset.fromItemProviders(assetProviders, context: viewContext) { assets in
+            assets.forEach {
+                $0.portfolio = portfolio
+            }
+            do {
+                try viewContext.save()
+            } catch {
+                print(error)
+            }
+        }
+        return true
+    }
+
 }
 
 //struct ContentView_Previews: PreviewProvider {

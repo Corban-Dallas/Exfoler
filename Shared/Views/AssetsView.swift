@@ -46,15 +46,32 @@ struct AssetsView: View {
                     assets.forEach { $0.portfolio = self.portfolio }
                 }
             }
-
         }
         .contextMenu {
-            Button {
-                
-            } label: {
+            Button(action: {showAlert = true}) {
                 Text("Delete")
             }
         }
+        .alert(isPresented: $showAlert, content: {alert})
+    }
+    
+    @State private var showAlert = false
+    private var alert: Alert {
+        let title = Text("Delete assets")
+        let message = Text("Are you sure that you want delete \(selection.count) assets?")
+        return Alert(title: title,
+              message: message,
+              primaryButton: .default(Text("Delete"), action: deleteSelection),
+              secondaryButton: .cancel())
+    }
+    
+    // MARK: - User intents
+    private func deleteSelection() {
+        selection.forEach { id in
+            let asset = Asset.withID(id, in: viewContext)
+            viewContext.delete(asset)
+        }
+        try? viewContext.save()
     }
 }
 

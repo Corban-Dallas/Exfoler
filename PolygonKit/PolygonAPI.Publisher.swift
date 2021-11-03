@@ -16,7 +16,7 @@ extension PolygonAPI {
         let firstUrl: URL
         let nextUrl: KeyPath<Output, String?>
         
-        func receive<S: Subscriber>(subscriber: S) where Error == S.Failure, Output == S.Input {
+        func receive<S: Subscriber>(subscriber: S) where S.Failure == Error, S.Input == Output {
             let subscription = SequentialDataSubscription(subscriber: subscriber,
                                                             firstUrl: firstUrl,
                                                              nextUrl: nextUrl)

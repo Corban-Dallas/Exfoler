@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class PolygonAPI {
+public class PolygonAPI {
     static private let agent = Agent()
     static internal let urlComponents: URLComponents = {
         var uc = URLComponents()
@@ -18,24 +18,7 @@ class PolygonAPI {
         return uc
     }()
     
-    
-//    static func tickers(search: String) -> AnyPublisher<TickersResponse, Error> {
-//        var uc = urlComponents
-//        uc.path = "/v3/reference/tickers"
-//        uc.queryItems!.append(contentsOf: [
-//            URLQueryItem(name: "search", value: search),
-//            URLQueryItem(name: "active", value: "true"),
-//            URLQueryItem(name: "sort", value: "ticker"),
-//            URLQueryItem(name: "order", value: "asc"),
-//            URLQueryItem(name: "limit", value: "10"),
-//            ])
-//        let url = uc.url!
-//        print(url)
-//
-//        let request = URLRequest(url: url)
-//        return agent.run(request)
-//    }
-    static func tickers(search: String) -> AnyPublisher<TickersResponse, Error> {
+    public static func tickers(search: String) -> AnyPublisher<TickersResponse, Error> {
         var uc = urlComponents
         uc.path = "/v3/reference/tickers"
         uc.queryItems!.append(contentsOf: [
@@ -44,7 +27,7 @@ class PolygonAPI {
             URLQueryItem(name: "sort", value: "name"),
             URLQueryItem(name: "order", value: "asc"),
             URLQueryItem(name: "limit", value: "20"),
-            ])
+        ])
 
         return SequentialDataPublisher(firstUrl: uc.url!, nextUrl: \.next_url)
             .receive(on: DispatchQueue.main)
@@ -52,7 +35,7 @@ class PolygonAPI {
     }
 
         
-    static func dailyOpenClose(ticker: String, date: Date? = nil) -> AnyPublisher<DailyOpenCloseResponse, Error> {
+    public static func dailyOpenClose(ticker: String, date: Date? = nil) -> AnyPublisher<DailyOpenCloseResponse, Error> {
         var uc = urlComponents
         uc.path = "/v1/open-close/\(ticker)"
 
@@ -65,17 +48,16 @@ class PolygonAPI {
         return agent.run(request)
     }
     
-    static func previousClose(ticker: String) -> AnyPublisher<PreviousCloseResponse, Error> {
+    public static func previousClose(ticker: String) -> AnyPublisher<PreviousCloseResponse, Error> {
         var uc = urlComponents
         uc.path = "/v2/aggs/ticker/\(ticker)/prev"
-        
         let request = URLRequest(url: uc.url!)
         return agent.run(request)
     }
     
 }
 
-struct Agent {
+private struct Agent {
     struct Response<T> {
         let value: T
         let response: URLResponse

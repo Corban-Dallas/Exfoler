@@ -11,7 +11,7 @@ import Combine
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @EnvironmentObject var dataFetcher: SearchEngine
+    @EnvironmentObject var searchEngine: SearchEngine
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Portfolio.name_, ascending: true)],
@@ -44,8 +44,7 @@ struct ContentView: View {
             }.opacity(0)
             
             SearchField(text: $searchText) { _ in } onCommit: {
-//                print("Commit: \(searchText)")
-                dataFetcher.searchAssets(text: searchText)
+                searchEngine.searchAssets(text: searchText)
                 showSearchResults = true
             }
             .padding(.horizontal, 15)
@@ -115,7 +114,6 @@ struct ContentView: View {
     private func deletePortfolios(offsets: IndexSet) {
         withAnimation {
             offsets.map { portfolios[$0] }.forEach(viewContext.delete)
-
             do {
                 try viewContext.save()
             } catch {
@@ -144,7 +142,6 @@ struct ContentView: View {
         }
         return true
     }
-
 }
 
 //struct ContentView_Previews: PreviewProvider {

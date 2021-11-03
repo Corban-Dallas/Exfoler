@@ -8,15 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		F718B4E5272C68EB00CD07C7 /* AssetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F718B4E4272C68EB00CD07C7 /* AssetsView.swift */; };
-		F76F3DA3272A9C9900754DEF /* PolygonAPI.Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76F3DA2272A9C9900754DEF /* PolygonAPI.Publisher.swift */; };
+		F74AC08E27327DAA000F6163 /* PolygonKit.docc in Sources */ = {isa = PBXBuildFile; fileRef = F74AC08D27327DAA000F6163 /* PolygonKit.docc */; };
+		F74AC09427327DAA000F6163 /* PolygonKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F74AC08A27327DAA000F6163 /* PolygonKit.framework */; };
+		F74AC09B27327DAA000F6163 /* PolygonKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74AC09A27327DAA000F6163 /* PolygonKitTests.swift */; };
+		F74AC09C27327DAA000F6163 /* PolygonKit.h in Headers */ = {isa = PBXBuildFile; fileRef = F74AC08C27327DAA000F6163 /* PolygonKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F74AC09F27327DAA000F6163 /* PolygonKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F74AC08A27327DAA000F6163 /* PolygonKit.framework */; };
+		F74AC0A027327DAA000F6163 /* PolygonKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F74AC08A27327DAA000F6163 /* PolygonKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F74AC0A827327DDB000F6163 /* PolygonAPI.Responses.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEE8271D6D9800D56A71 /* PolygonAPI.Responses.swift */; };
+		F74AC0A927327DDB000F6163 /* PolygonAPI.Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76F3DA2272A9C9900754DEF /* PolygonAPI.Publisher.swift */; };
+		F74AC0AA27327DDB000F6163 /* PolygonAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEE4271D659C00D56A71 /* PolygonAPI.swift */; };
 		F7AFCECC271D5B2700D56A71 /* Exfoler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEB8271D5B2600D56A71 /* Exfoler.xcdatamodeld */; };
 		F7AFCECE271D5B2700D56A71 /* ExfolerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEBA271D5B2600D56A71 /* ExfolerApp.swift */; };
 		F7AFCED0271D5B2700D56A71 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEBB271D5B2600D56A71 /* ContentView.swift */; };
 		F7AFCED2271D5B2700D56A71 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEBC271D5B2600D56A71 /* Persistence.swift */; };
 		F7AFCED4271D5B2700D56A71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7AFCEBD271D5B2700D56A71 /* Assets.xcassets */; };
-		F7AFCEE6271D659C00D56A71 /* PolygonAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEE4271D659C00D56A71 /* PolygonAPI.swift */; };
-		F7AFCEEA271D6D9800D56A71 /* PolygonAPI.Responses.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEE8271D6D9800D56A71 /* PolygonAPI.Responses.swift */; };
-		F7AFCEF1271DAA2500D56A71 /* PortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEEF271DAA2500D56A71 /* PortfolioView.swift */; };
 		F7AFCF0E271F23CE00D56A71 /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEF2271F079F00D56A71 /* SearchField.swift */; };
 		F7AFCF10271F593000D56A71 /* SearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCF0F271F593000D56A71 /* SearchResultsView.swift */; };
 		F7E8E39927305E5E00FD54F6 /* Asset+ItemProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E8E39827305E5E00FD54F6 /* Asset+ItemProvider.swift */; };
@@ -25,8 +30,51 @@
 		F7F2ADCA2721BEE500CFBF89 /* SearchEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F2ADC92721BEE500CFBF89 /* SearchEngine.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		F74AC09527327DAA000F6163 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F7AFCEB3271D5B2500D56A71 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F74AC08927327DAA000F6163;
+			remoteInfo = PolygonKit;
+		};
+		F74AC09727327DAA000F6163 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F7AFCEB3271D5B2500D56A71 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F7AFCEC7271D5B2700D56A71;
+			remoteInfo = "Exfoler (macOS)";
+		};
+		F74AC09D27327DAA000F6163 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F7AFCEB3271D5B2500D56A71 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F74AC08927327DAA000F6163;
+			remoteInfo = PolygonKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F74AC0A127327DAA000F6163 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F74AC0A027327DAA000F6163 /* PolygonKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		F718B4E4272C68EB00CD07C7 /* AssetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsView.swift; sourceTree = "<group>"; };
+		F74AC08A27327DAA000F6163 /* PolygonKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PolygonKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F74AC08C27327DAA000F6163 /* PolygonKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PolygonKit.h; sourceTree = "<group>"; };
+		F74AC08D27327DAA000F6163 /* PolygonKit.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = PolygonKit.docc; sourceTree = "<group>"; };
+		F74AC09327327DAA000F6163 /* PolygonKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PolygonKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F74AC09A27327DAA000F6163 /* PolygonKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolygonKitTests.swift; sourceTree = "<group>"; };
 		F76F3DA2272A9C9900754DEF /* PolygonAPI.Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolygonAPI.Publisher.swift; sourceTree = "<group>"; };
 		F7AFCEB9271D5B2600D56A71 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		F7AFCEBA271D5B2600D56A71 /* ExfolerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExfolerApp.swift; sourceTree = "<group>"; };
@@ -37,7 +85,6 @@
 		F7AFCECA271D5B2700D56A71 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		F7AFCEE4271D659C00D56A71 /* PolygonAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolygonAPI.swift; sourceTree = "<group>"; };
 		F7AFCEE8271D6D9800D56A71 /* PolygonAPI.Responses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolygonAPI.Responses.swift; sourceTree = "<group>"; };
-		F7AFCEEF271DAA2500D56A71 /* PortfolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioView.swift; sourceTree = "<group>"; };
 		F7AFCEF2271F079F00D56A71 /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
 		F7AFCF0F271F593000D56A71 /* SearchResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsView.swift; sourceTree = "<group>"; };
 		F7E8E39827305E5E00FD54F6 /* Asset+ItemProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Asset+ItemProvider.swift"; sourceTree = "<group>"; };
@@ -48,22 +95,60 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		F7AFCEC5271D5B2700D56A71 /* Frameworks */ = {
+		F74AC08727327DAA000F6163 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F74AC09027327DAA000F6163 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F74AC09427327DAA000F6163 /* PolygonKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7AFCEC5271D5B2700D56A71 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F74AC09F27327DAA000F6163 /* PolygonKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F74AC08B27327DAA000F6163 /* PolygonKit */ = {
+			isa = PBXGroup;
+			children = (
+				F7AFCEE4271D659C00D56A71 /* PolygonAPI.swift */,
+				F7AFCEE8271D6D9800D56A71 /* PolygonAPI.Responses.swift */,
+				F76F3DA2272A9C9900754DEF /* PolygonAPI.Publisher.swift */,
+				F74AC08C27327DAA000F6163 /* PolygonKit.h */,
+				F74AC08D27327DAA000F6163 /* PolygonKit.docc */,
+			);
+			path = PolygonKit;
+			sourceTree = "<group>";
+		};
+		F74AC09927327DAA000F6163 /* PolygonKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				F74AC09A27327DAA000F6163 /* PolygonKitTests.swift */,
+			);
+			path = PolygonKitTests;
+			sourceTree = "<group>";
+		};
 		F7AFCEB2271D5B2500D56A71 = {
 			isa = PBXGroup;
 			children = (
 				F7E8E3A22730673F00FD54F6 /* Exfoler--macOS--Info.plist */,
 				F7AFCEB7271D5B2600D56A71 /* Shared */,
 				F7AFCEC9271D5B2700D56A71 /* macOS */,
+				F74AC08B27327DAA000F6163 /* PolygonKit */,
+				F74AC09927327DAA000F6163 /* PolygonKitTests */,
 				F7AFCEC3271D5B2700D56A71 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -73,7 +158,6 @@
 			children = (
 				F7AFCEBA271D5B2600D56A71 /* ExfolerApp.swift */,
 				F7AFCEBB271D5B2600D56A71 /* ContentView.swift */,
-				F7AFCEEB271D6DA500D56A71 /* PolygonAPI */,
 				F7AFCEE7271D65A100D56A71 /* Model */,
 				F7F2ADCB2721BF1100CFBF89 /* ModelView */,
 				F7AFCEF5271F104C00D56A71 /* Views */,
@@ -87,6 +171,8 @@
 			isa = PBXGroup;
 			children = (
 				F7AFCEC8271D5B2700D56A71 /* Exfoler.app */,
+				F74AC08A27327DAA000F6163 /* PolygonKit.framework */,
+				F74AC09327327DAA000F6163 /* PolygonKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -110,23 +196,12 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		F7AFCEEB271D6DA500D56A71 /* PolygonAPI */ = {
-			isa = PBXGroup;
-			children = (
-				F7AFCEE4271D659C00D56A71 /* PolygonAPI.swift */,
-				F7AFCEE8271D6D9800D56A71 /* PolygonAPI.Responses.swift */,
-				F76F3DA2272A9C9900754DEF /* PolygonAPI.Publisher.swift */,
-			);
-			path = PolygonAPI;
-			sourceTree = "<group>";
-		};
 		F7AFCEF5271F104C00D56A71 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				F7F2ADC8272076C100CFBF89 /* AppKit */,
 				F7AFCF0F271F593000D56A71 /* SearchResultsView.swift */,
 				F718B4E4272C68EB00CD07C7 /* AssetsView.swift */,
-				F7AFCEEF271DAA2500D56A71 /* PortfolioView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -149,7 +224,55 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		F74AC08527327DAA000F6163 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F74AC09C27327DAA000F6163 /* PolygonKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		F74AC08927327DAA000F6163 /* PolygonKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F74AC0A627327DAA000F6163 /* Build configuration list for PBXNativeTarget "PolygonKit" */;
+			buildPhases = (
+				F74AC08527327DAA000F6163 /* Headers */,
+				F74AC08627327DAA000F6163 /* Sources */,
+				F74AC08727327DAA000F6163 /* Frameworks */,
+				F74AC08827327DAA000F6163 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PolygonKit;
+			productName = PolygonKit;
+			productReference = F74AC08A27327DAA000F6163 /* PolygonKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F74AC09227327DAA000F6163 /* PolygonKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F74AC0A727327DAA000F6163 /* Build configuration list for PBXNativeTarget "PolygonKitTests" */;
+			buildPhases = (
+				F74AC08F27327DAA000F6163 /* Sources */,
+				F74AC09027327DAA000F6163 /* Frameworks */,
+				F74AC09127327DAA000F6163 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F74AC09627327DAA000F6163 /* PBXTargetDependency */,
+				F74AC09827327DAA000F6163 /* PBXTargetDependency */,
+			);
+			name = PolygonKitTests;
+			productName = PolygonKitTests;
+			productReference = F74AC09327327DAA000F6163 /* PolygonKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		F7AFCEC7271D5B2700D56A71 /* Exfoler (macOS) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F7AFCEDA271D5B2700D56A71 /* Build configuration list for PBXNativeTarget "Exfoler (macOS)" */;
@@ -157,10 +280,12 @@
 				F7AFCEC4271D5B2700D56A71 /* Sources */,
 				F7AFCEC5271D5B2700D56A71 /* Frameworks */,
 				F7AFCEC6271D5B2700D56A71 /* Resources */,
+				F74AC0A127327DAA000F6163 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				F74AC09E27327DAA000F6163 /* PBXTargetDependency */,
 			);
 			name = "Exfoler (macOS)";
 			productName = "Exfoler (macOS)";
@@ -174,9 +299,16 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1300;
+				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
+					F74AC08927327DAA000F6163 = {
+						CreatedOnToolsVersion = 13.1;
+					};
+					F74AC09227327DAA000F6163 = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = F7AFCEC7271D5B2700D56A71;
+					};
 					F7AFCEC7271D5B2700D56A71 = {
 						CreatedOnToolsVersion = 13.0;
 					};
@@ -196,11 +328,27 @@
 			projectRoot = "";
 			targets = (
 				F7AFCEC7271D5B2700D56A71 /* Exfoler (macOS) */,
+				F74AC08927327DAA000F6163 /* PolygonKit */,
+				F74AC09227327DAA000F6163 /* PolygonKitTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		F74AC08827327DAA000F6163 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F74AC09127327DAA000F6163 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F7AFCEC6271D5B2700D56A71 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -212,6 +360,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		F74AC08627327DAA000F6163 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F74AC0A927327DDB000F6163 /* PolygonAPI.Publisher.swift in Sources */,
+				F74AC0AA27327DDB000F6163 /* PolygonAPI.swift in Sources */,
+				F74AC08E27327DAA000F6163 /* PolygonKit.docc in Sources */,
+				F74AC0A827327DDB000F6163 /* PolygonAPI.Responses.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F74AC08F27327DAA000F6163 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F74AC09B27327DAA000F6163 /* PolygonKitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F7AFCEC4271D5B2700D56A71 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -222,21 +389,151 @@
 				F7F2ADCA2721BEE500CFBF89 /* SearchEngine.swift in Sources */,
 				F7AFCECC271D5B2700D56A71 /* Exfoler.xcdatamodeld in Sources */,
 				F7AFCED2271D5B2700D56A71 /* Persistence.swift in Sources */,
-				F7AFCEE6271D659C00D56A71 /* PolygonAPI.swift in Sources */,
 				F7AFCECE271D5B2700D56A71 /* ExfolerApp.swift in Sources */,
 				F718B4E5272C68EB00CD07C7 /* AssetsView.swift in Sources */,
-				F7AFCEEA271D6D9800D56A71 /* PolygonAPI.Responses.swift in Sources */,
 				F7AFCF10271F593000D56A71 /* SearchResultsView.swift in Sources */,
 				F7AFCF0E271F23CE00D56A71 /* SearchField.swift in Sources */,
-				F76F3DA3272A9C9900754DEF /* PolygonAPI.Publisher.swift in Sources */,
-				F7AFCEF1271DAA2500D56A71 /* PortfolioView.swift in Sources */,
 				F7AFCED0271D5B2700D56A71 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		F74AC09627327DAA000F6163 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F74AC08927327DAA000F6163 /* PolygonKit */;
+			targetProxy = F74AC09527327DAA000F6163 /* PBXContainerItemProxy */;
+		};
+		F74AC09827327DAA000F6163 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F7AFCEC7271D5B2700D56A71 /* Exfoler (macOS) */;
+			targetProxy = F74AC09727327DAA000F6163 /* PBXContainerItemProxy */;
+		};
+		F74AC09E27327DAA000F6163 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F74AC08927327DAA000F6163 /* PolygonKit */;
+			targetProxy = F74AC09D27327DAA000F6163 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		F74AC0A227327DAA000F6163 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = J4AL2MH8ZC;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Grigory-Krivyakin.PolygonKit";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F74AC0A327327DAA000F6163 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = J4AL2MH8ZC;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Grigory-Krivyakin.PolygonKit";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F74AC0A427327DAA000F6163 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J4AL2MH8ZC;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Grigory-Krivyakin.PolygonKitTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Exfoler.app/Contents/MacOS/Exfoler";
+			};
+			name = Debug;
+		};
+		F74AC0A527327DAA000F6163 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J4AL2MH8ZC;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Grigory-Krivyakin.PolygonKitTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Exfoler.app/Contents/MacOS/Exfoler";
+			};
+			name = Release;
+		};
 		F7AFCED5271D5B2700D56A71 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -351,10 +648,11 @@
 		F7AFCEDB271D5B2700D56A71 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -381,6 +679,7 @@
 		F7AFCEDC271D5B2700D56A71 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
@@ -411,6 +710,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F74AC0A627327DAA000F6163 /* Build configuration list for PBXNativeTarget "PolygonKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F74AC0A227327DAA000F6163 /* Debug */,
+				F74AC0A327327DAA000F6163 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F74AC0A727327DAA000F6163 /* Build configuration list for PBXNativeTarget "PolygonKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F74AC0A427327DAA000F6163 /* Debug */,
+				F74AC0A527327DAA000F6163 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F7AFCEB6271D5B2500D56A71 /* Build configuration list for PBXProject "Exfoler" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

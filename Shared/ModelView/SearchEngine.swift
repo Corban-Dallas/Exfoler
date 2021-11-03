@@ -8,6 +8,7 @@ import SwiftUI
 import Foundation
 import Combine
 import CoreData
+import PolygonKit
 
 class SearchEngine: ObservableObject {
     @Published var isSearching = false

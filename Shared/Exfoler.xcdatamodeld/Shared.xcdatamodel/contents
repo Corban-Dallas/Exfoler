@@ -4,9 +4,11 @@
         <attribute name="currency_" optional="YES" attributeType="String"/>
         <attribute name="currentPrice_" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="id_" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="lastDayUpdated_" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="locale_" optional="YES" attributeType="String"/>
         <attribute name="market_" optional="YES" attributeType="String"/>
         <attribute name="name_" optional="YES" attributeType="String"/>
+        <attribute name="purchaseCount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="purchaseDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="purchasePrice" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="ticker_" optional="YES" attributeType="String"/>
@@ -19,7 +21,7 @@
         <relationship name="assets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Asset" inverseName="portfolio" inverseEntity="Asset"/>
     </entity>
     <elements>
-        <element name="Asset" positionX="-12.16796875" positionY="-245.90234375" width="128" height="194"/>
+        <element name="Asset" positionX="-12.16796875" positionY="-245.90234375" width="128" height="224"/>
         <element name="Portfolio" positionX="-352.09375" positionY="-403.50390625" width="128" height="74"/>
     </elements>
 </model>

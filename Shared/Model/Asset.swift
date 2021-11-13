@@ -51,18 +51,33 @@ extension Asset {
         set { currentPrice_ = newValue }
     }
     
+    var lastDayUpdated: Date {
+        get { lastDayUpdated_ ?? Date(timeIntervalSince1970: 0)}
+        set { lastDayUpdated_ = newValue }
+    }
+    
     static func withID(_ id: Asset.ID, in context: NSManagedObjectContext) -> Asset {
         let request = NSFetchRequest<Asset>(entityName: "Asset")
         request.sortDescriptors = [NSSortDescriptor(key: "id_", ascending: true)]
         request.predicate = NSPredicate(format: "id_ = %@", id as CVarArg)
         let asset = (try? context.fetch(request)) ?? []
         if let asset = asset.first {
-            print("Asset with ID founded")
+            print("Asset with ID is found.")
             return asset
         } else {
-            print("Asset with ID not founded")
-            let asset = Asset(context: context)
-            return asset
+            //return Asset(context: context)
+            return Asset(context: context)
         }
+    }
+    
+    static func fromInfo(_ info: AssetInfo, in context: NSManagedObjectContext) -> Asset {
+        let asset = Asset(context: context)
+        asset.name = info.name
+        asset.ticker = info.ticker
+        asset.locale = info.locale
+        asset.market = info.market
+        asset.currency = info.currency
+        asset.type = info.type
+        return asset
     }
 }

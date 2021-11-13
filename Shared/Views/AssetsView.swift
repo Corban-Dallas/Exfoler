@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct AssetsView: View {
+    @EnvironmentObject private var assetsUpdater: AssetsUpdater
+    
     @Environment(\.managedObjectContext) private var viewContext
-
+    
     @FetchRequest var assets: FetchedResults<Asset>
     @State var sortOrder: [KeyPathComparator<Asset>] = [
         .init(\.name, order: SortOrder.forward)
     ]
-    var sortedAssets: [Asset] {
-        assets.sorted(using: sortOrder)
-    }
+    var sortedAssets: [Asset] { assets.sorted(using: sortOrder) }
     
     private var portfolio: Portfolio?
     
@@ -26,6 +26,7 @@ struct AssetsView: View {
         let request = NSFetchRequest<Asset>(entityName: "Asset")
         if let portfolio = portfolio {
             self.portfolio = portfolio
+            
             request.predicate = NSPredicate(format: "portfolio.id_ = %@", portfolio.id as CVarArg)
         }
         request.sortDescriptors = []
@@ -42,7 +43,7 @@ struct AssetsView: View {
                 TableRow(asset).itemProvider { asset.itemProvider }
             }
             .onInsert(of: [Asset.draggableType]) { _, providers in
-                Asset.fromItemProviders(providers) { assets in
+                Asset.fromItemProviders(providers, context: viewContext) { assets in
                     assets.forEach { $0.portfolio = self.portfolio }
                 }
             }
@@ -51,6 +52,9 @@ struct AssetsView: View {
             Button(action: {showAlert = true}) {
                 Text("Delete")
             }
+        }
+        .onAppear {
+            assetsUpdater.updateAssets(sortedAssets)
         }
         .alert(isPresented: $showAlert, content: {alert})
     }
@@ -61,7 +65,7 @@ struct AssetsView: View {
         let message = Text("Are you sure that you want delete \(selection.count) assets?")
         return Alert(title: title,
               message: message,
-              primaryButton: .default(Text("Delete"), action: deleteSelection),
+              primaryButton: .destructive(Text("Delete"), action: deleteSelection),
               secondaryButton: .cancel())
     }
     
@@ -71,6 +75,7 @@ struct AssetsView: View {
             let asset = Asset.withID(id, in: viewContext)
             viewContext.delete(asset)
         }
+        selection.removeAll()
         try? viewContext.save()
     }
 }

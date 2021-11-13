@@ -10,8 +10,8 @@ import Combine
 
 extension PolygonAPI {
     /// A publisher sequentially provide chained output from network
-    /// firstUrl - an url to the first json in chain
-    /// nextUrl - a key path for decoded json where url of next json is stored
+    ///     firstUrl: - an url to the first json in chain
+    ///     nextUrl - a key path for decoded json where url of next json is stored
     internal struct SequentialDataPublisher<Output: Decodable>: Publisher {
         let firstUrl: URL
         let nextUrl: KeyPath<Output, String?>

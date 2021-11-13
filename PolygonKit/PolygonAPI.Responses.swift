@@ -21,7 +21,7 @@ public extension PolygonAPI {
             public let name: String
             public let market: String
             public let locale: String
-            public let primary_exchange: String
+            public let primary_exchange: String?
             public let type: String?
             public let active: Bool
             public let currency_name: String
@@ -33,26 +33,26 @@ public extension PolygonAPI {
     }
     
     struct DailyOpenCloseResponse: Decodable {
-        public let status: String
-        public let from: Date
-        public let symbol: String
-        public let open: Double
-        public let high: Double
-        public let low: Double
-        public let close: Double
-        public let volume: Double
-        public let afterHours: Double
-        public let preMarket: Double
+        public let status: String?
+        public let from: Date?
+        public let symbol: String?
+        public let open: Double?
+        public let high: Double?
+        public let low: Double?
+        public let close: Double?
+        public let volume: Double?
+        public let afterHours: Double?
+        public let preMarket: Double?
     }
     
     struct PreviousCloseResponse: Decodable {
-        public let ticker: String
-        public let queryCount: Int
-        public let resultsCount: Int
-        public let adjusted: Bool
-        public let results: [Results]
-        public let request_id: String
         public let status: String
+        public let request_id: String
+        public let ticker: String?
+        public let queryCount: Int?
+        public let resultsCount: Int?
+        public let adjusted: Bool?
+        public let results: [Results]?
     
         public struct Results: Decodable {
             public let T: String

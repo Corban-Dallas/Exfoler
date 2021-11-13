@@ -11,13 +11,13 @@ struct SearchResultsView: View {
     @EnvironmentObject var dataFetcher: SearchEngine
     @Environment(\.managedObjectContext) private var viewContext
 
-    private var assets: [Asset] {
+    private var assets: [AssetInfo] {
         dataFetcher.searchResults
             .sorted(using: sortOrder)
     }
     
-    @State var selection = Set<Asset.ID>()
-    @State var sortOrder: [KeyPathComparator<Asset>] = [
+    @State var selection = Set<AssetInfo.ID>()
+    @State var sortOrder: [KeyPathComparator<AssetInfo>] = [
         .init(\.name, order: SortOrder.forward)
     ]
     

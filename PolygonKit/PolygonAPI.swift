@@ -9,6 +9,9 @@ import Foundation
 import Combine
 
 public class PolygonAPI {
+    public static let shared = PolygonAPI()
+    private init() { }
+    
     static private let agent = Agent()
     static internal let urlComponents: URLComponents = {
         var uc = URLComponents()
@@ -30,20 +33,18 @@ public class PolygonAPI {
         ])
 
         return SequentialDataPublisher(firstUrl: uc.url!, nextUrl: \.next_url)
-            .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
 
         
     public static func dailyOpenClose(ticker: String, date: Date? = nil) -> AnyPublisher<DailyOpenCloseResponse, Error> {
         var uc = urlComponents
-        uc.path = "/v1/open-close/\(ticker)"
+//        uc.path = "/v1/open-close/\(ticker)"
 
         let date = date ?? Calendar.current.date(byAdding: .year, value: -1, to: Date() )!
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "/yyyy-MM-dd"
-        uc.path = dateFormatter.string(from: date)
-                          
+        uc.path = "/v1/open-close/\(ticker)" + dateFormatter.string(from: date)
         let request = URLRequest(url: uc.url!)
         return agent.run(request)
     }
@@ -53,6 +54,12 @@ public class PolygonAPI {
         uc.path = "/v2/aggs/ticker/\(ticker)/prev"
         let request = URLRequest(url: uc.url!)
         return agent.run(request)
+    }
+    
+    public enum PolygonError: String, Error {
+        case notFound = "Data not found"
+        case requestsExceeded = "You've exceeded the maximum requests per minute, please wait or upgrade your subscription to continue. https://polygon.io/pricing"
+        case emptyResponse
     }
     
 }
@@ -68,7 +75,6 @@ private struct Agent {
             .dataTaskPublisher(for: request)
             .tryMap(\.data)
             .decode(type: T.self, decoder: JSONDecoder())
-            .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
 }

@@ -28,7 +28,7 @@ extension Asset {
         return provider
     }
     
-    // Function transforms apropriate item providers into Asset in parallel and call complitter on result
+    // Function transforms apropriate item providers into Asset in parallel and calls complite clouser on result
     static func fromItemProviders(_ itemProviders: [NSItemProvider], context: NSManagedObjectContext, complition: @escaping ([Asset]) -> Void) {
         // Filter providers to match only Asset and AssetInfo providers
         let filteredProviders = itemProviders.filter {

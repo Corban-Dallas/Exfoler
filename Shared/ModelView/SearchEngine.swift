@@ -42,5 +42,4 @@ class SearchEngine: ObservableObject {
     private func clearResults() {
         searchResults = []
     }
-    
 }

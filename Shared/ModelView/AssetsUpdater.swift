@@ -10,49 +10,96 @@ import CoreData
 import Combine
 import PolygonKit
 
+// When initializated, keeps price of all assets in databese
+// in background (through provided context) up to date.
 class AssetsUpdater: ObservableObject {
-    @Published var status: String = "Idle"
-    private let context: NSManagedObjectContext
-    
-    
+    // Connecting external API to this updater
     private let assetsProvider: AssetsProvider = PolygonAPI.shared
+
+    @Published var status: Status = .idle
+    private let context: NSManagedObjectContext
+
+    // Publisher and subscriber for update assets' price (if needed) on every context save
+    private var didSave = NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave)
+    private var updater: AnyCancellable?
+    private var skipNextContextSave = false
+    
     private var subscriptions = Set<AnyCancellable>()
-        
+
     init(context: NSManagedObjectContext) {
         self.context = context
+        print("[AssetUpdater] Exfoler launched. Start update prices.")
+        updateAll()
+        
+        updater = didSave.sink { [weak self] assets in
+            print("[AssetUpdater] Context was saved. Start update prices.")
+            self?.updateAll()
+        }
     }
     
-    func updateAssets(_ assets: [Asset]) {
-        print("Start update assets")
-        // Remove already updated assets
-        let assets = assets.filter { $0.lastDayUpdated < Date() }
-        
-        // Create a set of tickers for update
-        let tickers = Set<String>(assets.map(\.ticker))
-        
-        self.status = "Updating"
-        tickers.forEach { ticker in
-            assetsProvider.previousClose(ticker: ticker)
-                //.print()
-                .receive(on: DispatchQueue.main)
-                .sink { [weak self] error in
-                    if let _ = self?.subscriptions.isEmpty {
-                        self?.status = "Idle"
-                        print("Stop update assets")
-                    }
-                    print()
-                } receiveValue: { [weak self] closePrice in
-                    let request = NSFetchRequest<Asset>(entityName: "Asset")
-                    request.predicate = NSPredicate(format: "ticker_ = %@", ticker)
-                    if let assets = try? self?.context.fetch(request) {
-                        assets.forEach{ asset in
-                            asset.currentPrice = closePrice
-                            asset.lastDayUpdated = Date()
-                        }
-                        try? self?.context.save()
-                    }
-                }
-                .store(in: &subscriptions)
+    enum Status {
+        case idle, updating
+    }
+    
+    // Update price of all assets in database
+    private func updateAll() {
+        if skipNextContextSave {
+            skipNextContextSave = false
+            return
         }
+        // Manage status
+        status = .updating
+        defer { status = .idle }
+        // Get all assets from database
+        let request = NSFetchRequest<Asset>(entityName: "Asset")
+        request.sortDescriptors = []
+        let assets = try? context.fetch(request)
+        
+        guard var assets = assets
+        else { return }
+        
+        // Remove already updated assets and return if all asssets are updated.
+        assets = assets
+            .filter { !NSCalendar.current.isDateInToday($0.lastDayUpdated) }
+        if assets.isEmpty { return }
+        
+        // Concurently update all assets
+        let group = DispatchGroup()
+        
+        let _ = DispatchQueue.global(qos: .userInitiated)
+        DispatchQueue.concurrentPerform(iterations: assets.count) { index in
+            group.enter()
+            getAssetPrice(ticker: assets[index].ticker) { closePrice in
+                defer { group.leave() }
+                assets[index].currentPrice = closePrice
+                assets[index].lastDayUpdated = Date()
+                print("Subscriptions count \(self.subscriptions.count)")
+            }
+        }
+        
+        group.notify(queue: .global(qos: .userInitiated)) { [weak self] in
+            self?.skipNextContextSave = true
+            try? self?.context.save()
+        }
+    }
+    
+    // Recursive function to get single asset price. It calls itself after 60 sec, if price was not received.
+    private func getAssetPrice(ticker: String, complition: @escaping (Double) -> Void) -> Void {
+        assetsProvider.previousClose(ticker: ticker)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] response in
+                switch response {
+                case .failure:
+                    print("Cant get price of \(ticker). Wait 60 seconds and try again")
+                    DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + .seconds(60)) { [weak self] in
+                        self?.getAssetPrice(ticker: ticker, complition: complition)
+                    }
+                default:
+                    break
+                }
+            } receiveValue: { closePrice in
+                complition(closePrice)
+            }
+            .store(in: &subscriptions)
     }
 }

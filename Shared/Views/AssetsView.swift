@@ -53,9 +53,6 @@ struct AssetsView: View {
                 Text("Delete")
             }
         }
-        .onAppear {
-            assetsUpdater.updateAssets(sortedAssets)
-        }
         .alert(isPresented: $showAlert, content: {alert})
     }
     

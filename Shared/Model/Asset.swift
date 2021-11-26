@@ -16,46 +16,16 @@ extension Asset {
         set { id_ = newValue }
     }
     
-    var ticker: String {
-        get { ticker_ ?? "Unknown" }
-        set { ticker_ = newValue }
-    }
-    
     var name: String {
-        get { name_ ?? "Unknown"}
+        get { name_ ?? "N/A"}
         set { name_ = newValue }
     }
     
-    var currency: String {
-        get { currency_ ?? "N/A" }
-        set { currency_ = newValue }
+    var ticker: Ticker {
+        get { ticker_! }
+        set { ticker_ = newValue }
     }
-    
-    var market: String {
-        get { market_ ?? "N/A" }
-        set { market_ = newValue}
-    }
-    
-    var locale: String {
-        get { locale_ ?? "N/A" }
-        set { locale_ = newValue }
-    }
-    
-    var type: String {
-        get { type_ ?? "N/A" }
-        set { type_ = newValue }
-    }
-    
-    var currentPrice: Double {
-        get { currentPrice_ }
-        set { currentPrice_ = newValue }
-    }
-    
-    var lastDayUpdated: Date {
-        get { lastDayUpdated_ ?? Date(timeIntervalSince1970: 0)}
-        set { lastDayUpdated_ = newValue }
-    }
-    
+
     static func withID(_ id: Asset.ID, in context: NSManagedObjectContext) -> Asset {
         let request = NSFetchRequest<Asset>(entityName: "Asset")
         request.sortDescriptors = [NSSortDescriptor(key: "id_", ascending: true)]
@@ -70,14 +40,10 @@ extension Asset {
         }
     }
     
-    static func fromInfo(_ info: AssetInfo, in context: NSManagedObjectContext) -> Asset {
+    static func fromInfo(_ info: TickerInfo, in context: NSManagedObjectContext) -> Asset {
         let asset = Asset(context: context)
         asset.name = info.name
-        asset.ticker = info.ticker
-        asset.locale = info.locale
-        asset.market = info.market
-        asset.currency = info.currency
-        asset.type = info.type
+        asset.ticker = Ticker.fromInfo(info, context: context)
         return asset
     }
 }

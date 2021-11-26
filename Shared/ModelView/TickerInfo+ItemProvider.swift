@@ -1,5 +1,5 @@
 //
-//  AssetInfo+ItemProvider.swift
+//  TickerInfo+ItemProvider.swift
 //  Exfoler (macOS)
 //
 //  Created by Григорий Кривякин on 12.11.2021.
@@ -8,7 +8,7 @@
 import Foundation
 import UniformTypeIdentifiers
 
-extension AssetInfo {
+extension TickerInfo {
     static var draggableType = UTType(exportedAs: "Grigory-Krivyakin.Exfoler.assetInfo")
     
     var itemProvider: NSItemProvider {

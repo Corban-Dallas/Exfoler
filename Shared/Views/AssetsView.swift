@@ -8,16 +8,14 @@
 import SwiftUI
 
 struct AssetsView: View {
-    @EnvironmentObject private var assetsUpdater: AssetsUpdater
-    
     @Environment(\.managedObjectContext) private var viewContext
     
-    @FetchRequest var assets: FetchedResults<Asset>
+    @FetchRequest private var assets: FetchedResults<Asset>
+    
     @State var sortOrder: [KeyPathComparator<Asset>] = [
         .init(\.name, order: SortOrder.forward)
     ]
-    var sortedAssets: [Asset] { assets.sorted(using: sortOrder) }
-    
+    private var sortedAssets: [Asset] { assets.sorted(using: sortOrder) }
     private var portfolio: Portfolio?
     
     @State var selection = Set<Asset.ID>()
@@ -26,21 +24,23 @@ struct AssetsView: View {
         let request = NSFetchRequest<Asset>(entityName: "Asset")
         if let portfolio = portfolio {
             self.portfolio = portfolio
-            
             request.predicate = NSPredicate(format: "portfolio.id_ = %@", portfolio.id as CVarArg)
         }
         request.sortDescriptors = []
         _assets = FetchRequest(fetchRequest: request, animation: .default)
     }
+    @State var showAssetEditor = false
+    @State var assetToEdit: Asset?
         
     var body: some View {
         Table(selection: $selection, sortOrder: $sortOrder) {
             TableColumn("Name", value: \.name)
-            TableColumn("Ticker", value: \.ticker)
-            TableColumn("Price", value: \.currentPrice) { Text("\($0.currentPrice)") }
+            TableColumn("Ticker", value: \.ticker.symbol)
+            TableColumn("Price", value: \.ticker.price) { Text("\($0.ticker.price)") }
         } rows: {
             ForEach(sortedAssets) { asset in
-                TableRow(asset).itemProvider { asset.itemProvider }
+                TableRow(asset)
+                    .itemProvider { asset.itemProvider }
             }
             .onInsert(of: [Asset.draggableType]) { _, providers in
                 Asset.fromItemProviders(providers, context: viewContext) { assets in
@@ -48,9 +48,15 @@ struct AssetsView: View {
                 }
             }
         }
+        .sheet(isPresented: $showAssetEditor) {
+            AssetEditor(asset: Asset.withID(selection.first!, in: viewContext), showEditor: $showAssetEditor)
+        }
         .contextMenu {
-            Button(action: {showAlert = true}) {
-                Text("Delete")
+            Button("Edit") {
+                showAssetEditor = true
+            }
+            Button("Delete") {
+                showAlert = true
             }
         }
         .alert(isPresented: $showAlert, content: {alert})
@@ -65,15 +71,20 @@ struct AssetsView: View {
               primaryButton: .destructive(Text("Delete"), action: deleteSelection),
               secondaryButton: .cancel())
     }
-    
+
     // MARK: - User intents
     private func deleteSelection() {
         selection.forEach { id in
-            let asset = Asset.withID(id, in: viewContext)
+            let asset = assets.first(where: { $0.id == id })!
             viewContext.delete(asset)
         }
-        selection.removeAll()
-        try? viewContext.save()
+        self.selection.removeAll()
+        // We need wait some time before save changes in context
+        // or UI will not animate deletion because of late updating
+        // assets: FetchResaults. There must be better solution?
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50)) {
+            try? viewContext.save()
+        }
     }
 }
 

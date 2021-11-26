@@ -61,7 +61,7 @@ struct ContentView: View {
                 NavigationLink(destination: AssetsView(portfolio: portfolio)) {
                     Text(portfolio.name)
                 }
-                .onDrop(of: [Asset.draggableType, AssetInfo.draggableType], isTargeted: nil) { providers in
+                .onDrop(of: [Asset.draggableType, TickerInfo.draggableType], isTargeted: nil) { providers in
                     dropAssets(providers: providers, to: portfolio)
                 }
 
@@ -129,7 +129,7 @@ struct ContentView: View {
     private func dropAssets(providers: [NSItemProvider], to portfolio: Portfolio) -> Bool {
         let assetProviders = providers.filter {
             $0.hasItemConformingToTypeIdentifier(Asset.draggableType.identifier) ||
-            $0.hasItemConformingToTypeIdentifier(AssetInfo.draggableType.identifier)
+            $0.hasItemConformingToTypeIdentifier(TickerInfo.draggableType.identifier)
         }
         Asset.fromItemProviders(assetProviders, context: viewContext) { assets in
             assets.forEach {  $0.portfolio = portfolio }

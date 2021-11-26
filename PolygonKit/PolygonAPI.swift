@@ -7,12 +7,15 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 public class PolygonAPI {
     public static let shared = PolygonAPI()
     private init() { }
     
-    static private let agent = Agent()
+    static private let publisherAgent = PublisherAgent()
+    static private let clouserAgent = ClouserAgent()
+    
     static internal let urlComponents: URLComponents = {
         var uc = URLComponents()
         uc.scheme = "https"
@@ -46,14 +49,23 @@ public class PolygonAPI {
         dateFormatter.dateFormat = "/yyyy-MM-dd"
         uc.path = "/v1/open-close/\(ticker)" + dateFormatter.string(from: date)
         let request = URLRequest(url: uc.url!)
-        return agent.run(request)
+        return publisherAgent.run(request)
     }
     
     public static func previousClose(ticker: String) -> AnyPublisher<PreviousCloseResponse, Error> {
         var uc = urlComponents
         uc.path = "/v2/aggs/ticker/\(ticker)/prev"
         let request = URLRequest(url: uc.url!)
-        return agent.run(request)
+        return publisherAgent.run(request)
+    }
+    
+    public static func previousClose(ticker: String, complition: @escaping (PreviousCloseResponse?, Error?) -> Void ) {
+        var uc = urlComponents
+        uc.path = "/v2/aggs/ticker/\(ticker)/prev"
+        let request = URLRequest(url: uc.url!)
+        clouserAgent.run(request) { response, error in
+            complition(response, error)
+        }
     }
     
     public enum PolygonError: String, Error {
@@ -64,7 +76,7 @@ public class PolygonAPI {
     
 }
 
-private struct Agent {
+private struct PublisherAgent {
     struct Response<T> {
         let value: T
         let response: URLResponse
@@ -77,4 +89,29 @@ private struct Agent {
             .decode(type: T.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }
+}
+
+private struct ClouserAgent {
+    struct Response<T> {
+        let value: T
+        let response: URLResponse
+    }
+    func run<T: Decodable>(_ request: URLRequest, complition: @escaping (T?, Error?) -> Void) {
+        URLSession.shared.dataTask(with: request) { data, _, error in
+            if let error = error {
+                complition(nil, error)
+                return
+            }
+            guard let data = data
+            else { return }
+            do {
+                let response = try JSONDecoder().decode(T.self, from: data)
+                complition(response, nil)
+            } catch {
+                complition(nil, error)
+            }
+        }
+        .resume()
+    }
+    
 }

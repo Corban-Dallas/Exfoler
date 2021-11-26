@@ -10,7 +10,7 @@ import Combine
 import PolygonKit
 
 extension PolygonAPI: AssetsProvider {
-    func tickers(search: String) -> AnyPublisher<[AssetInfo], Error> {
+    func tickers(search: String) -> AnyPublisher<[TickerInfo], Error> {
         PolygonAPI.tickers(search: search)
             .map { response in
                 
@@ -18,7 +18,7 @@ extension PolygonAPI: AssetsProvider {
                     return []
                 }
                 return assets.map {
-                    AssetInfo(ticker: $0.ticker,
+                    TickerInfo(ticker: $0.ticker,
                               name: $0.name,
                               locale: $0.locale,
                               market: $0.market,
@@ -44,6 +44,30 @@ extension PolygonAPI: AssetsProvider {
                 }
             }
             .eraseToAnyPublisher()
+    }
+    
+    func previousClose(ticker: String, complition: @escaping (Double?, Error?) -> Void) {
+        PolygonAPI.previousClose(ticker: ticker) { response, error in
+            if let error = error {
+                complition(nil, error)
+                return
+            }
+            guard let response = response
+            else { return }
+            
+            switch response.status {
+            case "NOT_FOUND":
+                complition(nil, ExfolerError.tickerNotFound)
+            case "ERROR":
+                complition(nil, ExfolerError.requestsExceeded)
+            default:
+                guard let closePrice = response.results?.first?.c else {
+                    complition(nil, ExfolerError.responseIsEmpty)
+                    return
+                }
+                complition(closePrice, nil)
+            }
+        }
     }
 //    func openClosePrice(ticker: String, date: Date? = nil) -> AnyPublisher<(openPrice:Double, closePrice:Double), Error> {
 //        PolygonAPI.dailyOpenClose(ticker: ticker, date: date)

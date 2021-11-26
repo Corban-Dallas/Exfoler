@@ -1,5 +1,5 @@
 //
-//  AssetInfo.swift
+//  TickerInfo.swift
 //  Exfoler (macOS)
 //
 //  Created by Григорий Кривякин on 03.11.2021.
@@ -11,7 +11,7 @@ import AppKit
 // Структура с информацией об активах. Используется как промежуточное хранилище для моста
 // между возвращаемыми данными внешнего фреймворка и локальными записями в базе данных
 
-struct AssetInfo {
+struct TickerInfo {
     var id = UUID()
     var ticker: String
     var name: String
@@ -21,6 +21,6 @@ struct AssetInfo {
     var currency: String
 }
 
-extension AssetInfo: Codable, Hashable, Identifiable {
+extension TickerInfo: Codable, Hashable, Identifiable {
     
 }

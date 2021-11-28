@@ -20,15 +20,6 @@ struct AssetsView: View {
     
     @State var selection = Set<Asset.ID>()
 
-    init(portfolio: Portfolio? = nil) {
-        let request = NSFetchRequest<Asset>(entityName: "Asset")
-        if let portfolio = portfolio {
-            self.portfolio = portfolio
-            request.predicate = NSPredicate(format: "portfolio.id_ = %@", portfolio.id as CVarArg)
-        }
-        request.sortDescriptors = []
-        _assets = FetchRequest(fetchRequest: request, animation: .default)
-    }
     @State var showAssetEditor = false
     @State var assetToEdit: Asset?
         
@@ -52,15 +43,30 @@ struct AssetsView: View {
             AssetEditor(asset: Asset.withID(selection.first!, in: viewContext), showEditor: $showAssetEditor)
         }
         .contextMenu {
-            Button("Edit") {
-                showAssetEditor = true
+            if selection.count == 1 {
+                Button("Edit") {
+                    showAssetEditor = true
+                }
             }
-            Button("Delete") {
-                showAlert = true
+            if selection.count > 0 {
+                Button("Delete") {
+                    showAlert = true
+                }
             }
         }
         .alert(isPresented: $showAlert, content: {alert})
     }
+    
+    init(portfolio: Portfolio? = nil) {
+        let request = NSFetchRequest<Asset>(entityName: "Asset")
+        if let portfolio = portfolio {
+            self.portfolio = portfolio
+            request.predicate = NSPredicate(format: "portfolio.id_ = %@", portfolio.id as CVarArg)
+        }
+        request.sortDescriptors = []
+        _assets = FetchRequest(fetchRequest: request, animation: .default)
+    }
+
     
     @State private var showAlert = false
     private var alert: Alert {

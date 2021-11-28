@@ -19,6 +19,7 @@ struct AssetEditor: View {
                 showEditor = false
             }
         }
+        .padding()
     }
 }
 

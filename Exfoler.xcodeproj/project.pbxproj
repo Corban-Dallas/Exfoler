@@ -219,9 +219,9 @@
 			isa = PBXGroup;
 			children = (
 				F7F2ADC42720126700CFBF89 /* Asset.swift */,
-				F7AFCEBC271D5B2600D56A71 /* Persistence.swift */,
-				F7F2ADC22720111F00CFBF89 /* Portfolio.swift */,
 				F751F7522750A157004F698A /* Ticker.swift */,
+				F7F2ADC22720111F00CFBF89 /* Portfolio.swift */,
+				F7AFCEBC271D5B2600D56A71 /* Persistence.swift */,
 				F751F74C27441CC2004F698A /* Errors.swift */,
 			);
 			path = Model;

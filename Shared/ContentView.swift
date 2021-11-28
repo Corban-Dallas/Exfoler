@@ -26,8 +26,15 @@ struct ContentView: View {
                     portfolioSection
                 }
                 .toolbar {
-                    addPortfolioItem
-                    removeAllPortfoliosItem
+                    ToolbarItemGroup {
+                        Button(action: addPortfolio) {
+                            Label("Add portfolio", systemImage: "plus")
+                        }
+                        Button(role: .destructive, action: deleteAllPortfolios) {
+                            Label("Delete all", systemImage: "trash")
+                        }
+
+                    }
                 }
             }
         }
@@ -51,78 +58,47 @@ struct ContentView: View {
         }
     }
     
-    // MARK: Portfolios list
+    // MARK: Portfolio list
     private var portfolioSection: some View {
         Section(header: Text("Portfolios")) {
             NavigationLink(destination: AssetsView()) {
-                Text("All assets")
+                Label("All assets", systemImage: "square.grid.2x2")
             }
             ForEach(portfolios) { portfolio in
                 NavigationLink(destination: AssetsView(portfolio: portfolio)) {
-                    Text(portfolio.name)
+                    Label(portfolio.name, systemImage: "case")
                 }
                 .onDrop(of: [Asset.draggableType, TickerInfo.draggableType], isTargeted: nil) { providers in
                     dropAssets(providers: providers, to: portfolio)
                 }
-
-            }
-        }
-    }
-    // MARK: - Toolbar
-    private var addPortfolioItem: ToolbarItem<Void, Button<Label<Text, Image>>> {
-        ToolbarItem {
-            Button(action: addPortfolio) {
-                Label("Add portfolio", systemImage: "plus")
-            }
-        }
-    }
-    
-    private var removeAllPortfoliosItem: ToolbarItem<Void, Button<Label<Text, Image>>> {
-        ToolbarItem(placement: .destructiveAction) {
-            Button {
-                portfolios.forEach(viewContext.delete)
-                do {
-                    try viewContext.save()
-                } catch {
-                    print(error)
+                .contextMenu {
+                    Button("Delete") {
+                        viewContext.delete(portfolio)
+                        try? viewContext.save()
+                    }
                 }
-            } label: {
-                Label("Delete all", systemImage: "trash")
             }
         }
     }
-
     
     // MARK: - User intents
     private func addPortfolio() {
         withAnimation {
             let newPortfolio = Portfolio(context: viewContext)
             newPortfolio.name = "Portfolio \(portfolios.count)"
-            newPortfolio.id = UUID()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+            try? viewContext.save()
         }
     }
     
     private func deletePortfolios(offsets: IndexSet) {
         withAnimation {
             offsets.map { portfolios[$0] }.forEach(viewContext.delete)
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+            try? viewContext.save()
         }
+    }
+    
+    private func deleteAllPortfolios() {
+        deletePortfolios(offsets: IndexSet(portfolios.indices))
     }
     
     // MARK: Drag and drop

@@ -23,6 +23,11 @@ struct ContentView: View {
             VStack {
                 searchField
                 List {
+                    Section(header: Text("Tickers")) {
+                        NavigationLink(destination: TickersView()) {
+                            Label("All tickers", systemImage: "list.bullet.rectangle")
+                        }
+                    }
                     portfolioSection
                 }
                 .toolbar {

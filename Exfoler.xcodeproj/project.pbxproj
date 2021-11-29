@@ -26,6 +26,7 @@
 		F751F74F27441F86004F698A /* PolygonAPI.Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = F751F74E27441F86004F698A /* PolygonAPI.Error.swift */; };
 		F751F75127476EC1004F698A /* AssetEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F751F75027476EC1004F698A /* AssetEditor.swift */; };
 		F751F7532750A157004F698A /* Ticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F751F7522750A157004F698A /* Ticker.swift */; };
+		F751F75527549FA4004F698A /* TickersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F751F75427549FA4004F698A /* TickersView.swift */; };
 		F7AFCECC271D5B2700D56A71 /* Exfoler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEB8271D5B2600D56A71 /* Exfoler.xcdatamodeld */; };
 		F7AFCECE271D5B2700D56A71 /* ExfolerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEBA271D5B2600D56A71 /* ExfolerApp.swift */; };
 		F7AFCED0271D5B2700D56A71 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEBB271D5B2600D56A71 /* ContentView.swift */; };
@@ -93,6 +94,7 @@
 		F751F74E27441F86004F698A /* PolygonAPI.Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolygonAPI.Error.swift; sourceTree = "<group>"; };
 		F751F75027476EC1004F698A /* AssetEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetEditor.swift; sourceTree = "<group>"; };
 		F751F7522750A157004F698A /* Ticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticker.swift; sourceTree = "<group>"; };
+		F751F75427549FA4004F698A /* TickersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickersView.swift; sourceTree = "<group>"; };
 		F76F3DA2272A9C9900754DEF /* PolygonAPI.Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolygonAPI.Publisher.swift; sourceTree = "<group>"; };
 		F7AFCEB9271D5B2600D56A71 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		F7AFCEBA271D5B2600D56A71 /* ExfolerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExfolerApp.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				F7AFCF0F271F593000D56A71 /* SearchResultsView.swift */,
 				F718B4E4272C68EB00CD07C7 /* AssetsView.swift */,
 				F751F75027476EC1004F698A /* AssetEditor.swift */,
+				F751F75427549FA4004F698A /* TickersView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F751F75527549FA4004F698A /* TickersView.swift in Sources */,
 				F751F74327328F04004F698A /* PolygonAPI+AssetsProvider.swift in Sources */,
 				F7E8E39927305E5E00FD54F6 /* Asset+DragAndDrop.swift in Sources */,
 				F7F2ADC32720111F00CFBF89 /* Portfolio.swift in Sources */,

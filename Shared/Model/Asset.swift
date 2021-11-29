@@ -22,7 +22,7 @@ extension Asset {
     }
     
     var ticker: Ticker {
-        get { ticker_! }
+        get { ticker_ ?? PersistenceController.shared.placeholderTicker }
         set { ticker_ = newValue }
     }
 

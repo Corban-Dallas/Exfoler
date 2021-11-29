@@ -9,6 +9,8 @@ import CoreData
 
 struct PersistenceController {
     static let shared = PersistenceController()
+    
+    public var placeholderTicker: Ticker
 
 //    static var preview: PersistenceController = {
 //        let result = PersistenceController(inMemory: true)
@@ -35,6 +37,7 @@ struct PersistenceController {
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
+        
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
@@ -51,5 +54,10 @@ struct PersistenceController {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+        self.container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+        
+        let info = TickerInfo(id: .init(), ticker: "N/A", name: "Placeholder", locale: "N/A", market: "N/A", type: "N/A", currency: "N/A")
+        placeholderTicker = Ticker.fromInfo(info, context: container.viewContext)
+        placeholderTicker.lastTimeUpdated = Date()
     }
 }

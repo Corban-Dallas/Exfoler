@@ -82,6 +82,7 @@ class TickersBackgroundUpdater: ObservableObject {
         
         // Remove tickers which not related to any asset anymore
         tickers.filter { $0.relatedAssets!.count == 0 }.forEach {
+            if $0.name == "Placeholder" { return }
             self.context.delete($0)
         }
         tickers = tickers.filter { $0.relatedAssets!.count > 0 }

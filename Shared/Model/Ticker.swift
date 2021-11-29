@@ -57,18 +57,41 @@ extension Ticker {
     }
     
     static func fromInfo(_ info: TickerInfo, context: NSManagedObjectContext) -> Ticker {
-        let request = NSFetchRequest<Ticker>(entityName: "Ticker")
-        request.predicate = NSPredicate(format: "symbol_ = %@", info.ticker)
-        guard let ticker = try? context.fetch(request).first else {
-            let ticker = Ticker(context: context)
-            ticker.symbol = info.ticker
-            ticker.name = info.name
-            ticker.currency = info.currency
-            ticker.type = info.type
-            ticker.market = info.market
-//            try? context.save()
-            return ticker
-        }
+        let ticker = Ticker(context: context)
+        ticker.symbol = info.ticker
+        ticker.name = info.name
+        ticker.currency = info.currency
+        ticker.type = info.type
+        ticker.market = info.market
         return ticker
+//        let request = NSFetchRequest<Ticker>(entityName: "Ticker")
+//        request.predicate = NSPredicate(format: "symbol_ = %@", info.ticker)
+//        guard let ticker = try? context.fetch(request).first else {
+//            let ticker = Ticker(context: context)
+//            ticker.symbol = info.ticker
+//            ticker.name = info.name
+//            ticker.currency = info.currency
+//            ticker.type = info.type
+//            ticker.market = info.market
+////            try? context.save()
+//            return ticker
+//        }
+//        return ticker
     }
+    
+    static func withID(_ id: Ticker.ID, in context: NSManagedObjectContext) -> Ticker {
+        let request = NSFetchRequest<Ticker>(entityName: "Ticker")
+        request.sortDescriptors = [NSSortDescriptor(key: "id_", ascending: true)]
+        request.predicate = NSPredicate(format: "id_ = %@", id as CVarArg)
+        let ticker = (try? context.fetch(request)) ?? []
+        if let ticker = ticker.first {
+            print("Asset with ID is found.")
+            return ticker
+        } else {
+            //return Asset(context: context)
+            return Ticker(context: context)
+        }
+    }
+
+    
 }

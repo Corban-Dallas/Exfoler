@@ -21,13 +21,26 @@ struct AssetsView: View {
     @State var selection = Set<Asset.ID>()
 
     @State var showAssetEditor = false
-    @State var assetToEdit: Asset?
         
     var body: some View {
         Table(selection: $selection, sortOrder: $sortOrder) {
             TableColumn("Name", value: \.name)
+                .width(ideal: 300.0)
             TableColumn("Ticker", value: \.ticker.symbol)
-            TableColumn("Price", value: \.ticker.price) { Text("\($0.ticker.price)") }
+                .width(min: 40.0, ideal: 40.0)
+            TableColumn("Count", value: \.purchaseCount) {
+                Text("\($0.purchaseCount)")
+            }
+            .width(ideal: 15.0)
+            TableColumn("Buy price", value: \.purchasePrice) {
+                Text("\($0.purchasePrice)")
+            }
+            .width(min: 40.0, ideal: 40.0)
+
+            TableColumn("Price", value: \.ticker.price) {
+                Text("\($0.ticker.price)")
+            }
+            .width(min: 40.0, ideal: 40.0)
         } rows: {
             ForEach(sortedAssets) { asset in
                 TableRow(asset)
@@ -50,11 +63,11 @@ struct AssetsView: View {
             }
             if selection.count > 0 {
                 Button("Delete") {
-                    showAlert = true
+                    showDeleteAlert = true
                 }
             }
         }
-        .alert(isPresented: $showAlert, content: {alert})
+        .alert(isPresented: $showDeleteAlert, content: {deleteAlert})
     }
     
     init(portfolio: Portfolio? = nil) {
@@ -68,8 +81,8 @@ struct AssetsView: View {
     }
 
     
-    @State private var showAlert = false
-    private var alert: Alert {
+    @State private var showDeleteAlert = false
+    private var deleteAlert: Alert {
         let title = Text("Delete assets")
         let message = Text("Are you sure that you want delete \(selection.count) assets?")
         return Alert(title: title,

@@ -12,53 +12,53 @@ struct AssetsView: View {
     
     @FetchRequest private var assets: FetchedResults<Asset>
     
-    @State var sortOrder: [KeyPathComparator<Asset>] = [
-        .init(\.name, order: SortOrder.forward)
-    ]
+    @State var sortOrder: [KeyPathComparator<Asset>] = [.init(\.name, order: SortOrder.forward)]
     private var sortedAssets: [Asset] { assets.sorted(using: sortOrder) }
     private var portfolio: Portfolio?
     
     @State var selection = Set<Asset.ID>()
-
-    @State var showAssetEditor = false
+    @State var assetToEdit: Asset?
         
     var body: some View {
-        Table(selection: $selection, sortOrder: $sortOrder) {
-            TableColumn("Name", value: \.name)
-                .width(ideal: 300.0)
-            TableColumn("Ticker", value: \.ticker.symbol)
+        VStack {
+            summaryView
+            Table(selection: $selection, sortOrder: $sortOrder) {
+                TableColumn("Name", value: \.name)
+                    .width(ideal: 300.0)
+                TableColumn("Ticker", value: \.ticker.symbol)
+                    .width(min: 40.0, ideal: 40.0)
+                TableColumn("Count", value: \.purchaseCount) {
+                    Text("\($0.purchaseCount)")
+                }
+                .width(ideal: 15.0)
+                TableColumn("Buy price", value: \.purchasePrice) {
+                    Text("\($0.purchasePrice)")
+                }
                 .width(min: 40.0, ideal: 40.0)
-            TableColumn("Count", value: \.purchaseCount) {
-                Text("\($0.purchaseCount)")
-            }
-            .width(ideal: 15.0)
-            TableColumn("Buy price", value: \.purchasePrice) {
-                Text("\($0.purchasePrice)")
-            }
-            .width(min: 40.0, ideal: 40.0)
 
-            TableColumn("Price", value: \.ticker.price) {
-                Text("\($0.ticker.price)")
-            }
-            .width(min: 40.0, ideal: 40.0)
-        } rows: {
-            ForEach(sortedAssets) { asset in
-                TableRow(asset)
-                    .itemProvider { asset.itemProvider }
-            }
-            .onInsert(of: [Asset.draggableType]) { _, providers in
-                Asset.fromItemProviders(providers, context: viewContext) { assets in
-                    assets.forEach { $0.portfolio = self.portfolio }
+                TableColumn("Price", value: \.ticker.price) {
+                    Text("\($0.ticker.price)")
+                }
+                .width(min: 40.0, ideal: 40.0)
+            } rows: {
+                ForEach(sortedAssets) { asset in
+                    TableRow(asset)
+                        .itemProvider { asset.itemProvider }
+                }
+                .onInsert(of: [Asset.draggableType]) { _, providers in
+                    Asset.fromItemProviders(providers, context: viewContext) { assets in
+                        assets.forEach { $0.portfolio = self.portfolio }
+                    }
                 }
             }
         }
-        .sheet(isPresented: $showAssetEditor) {
-            AssetEditor(asset: Asset.withID(selection.first!, in: viewContext), showEditor: $showAssetEditor)
+        .sheet(item: $assetToEdit) { asset in
+            AssetEditor(asset: asset)
         }
         .contextMenu {
             if selection.count == 1 {
                 Button("Edit") {
-                    showAssetEditor = true
+                    assetToEdit = Asset.withID(selection.first!, in: viewContext)
                 }
             }
             if selection.count > 0 {
@@ -68,7 +68,48 @@ struct AssetsView: View {
             }
         }
         .alert(isPresented: $showDeleteAlert, content: {deleteAlert})
+        .toolbar {
+            Button {
+                assetToEdit = Asset.withID(selection.first!, in: viewContext)
+            } label: {
+                Image(systemName: "square.and.pencil")
+            }
+            .disabled(selection.count != 1)
+        }
+        
+        
     }
+    
+    private var currentPrice: Double {
+        assets.compactMap { ($0.ticker_?.price ?? 0.0) * Double($0.purchaseCount) }.reduce(0, +)
+    }
+    private var purchasePrice: Double {
+        assets.compactMap { $0.purchasePrice * Double($0.purchaseCount) }.reduce(0, +)
+    }
+    private var profit: Double {
+        (currentPrice/purchasePrice - 1) * 100
+    }
+    
+    
+    private var summaryView: some View {
+        VStack {
+            HStack {
+                Text("Current price:")
+                Text("\(currentPrice)")
+                Spacer()
+            }
+            HStack {
+                Text("Profit:")
+                Text("\(currentPrice - purchasePrice) / \(profit)%")
+                    .foregroundColor( profit > 0 ? .green : .red)
+                Spacer()
+            }
+
+        }
+        .padding([.horizontal, .top])
+    }
+
+    
     
     init(portfolio: Portfolio? = nil) {
         let request = NSFetchRequest<Asset>(entityName: "Asset")
@@ -100,7 +141,7 @@ struct AssetsView: View {
         self.selection.removeAll()
         // We need wait some time before save changes in context
         // or UI will not animate deletion because of late updating
-        // assets: FetchResaults. There must be better solution?
+        // assets: FetchResaults. Need to ind right solution...
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(50)) {
             try? viewContext.save()
         }

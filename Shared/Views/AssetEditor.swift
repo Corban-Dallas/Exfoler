@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct AssetEditor: View {
-    public var asset: Asset
+    var asset: Asset
+    
+    @Environment(\.dismiss) private var dissmiss
     @Environment(\.managedObjectContext) private var viewContext
-    @Binding var showEditor: Bool
     
     @State private var purchasePrice = 0.0
     @State private var purchaseCount: Int = 0
     @State private var purchaseDate = Date()
-    
+        
     var body: some View {
         VStack {
-            Text(asset.ticker.symbol)
-                .font(.headline)
+            Text(asset.ticker.symbol).font(.headline)
             Form {
                 TextField("Purchase price", value: $purchasePrice, format: .number)
                 TextField("Purchase count", value: $purchaseCount, format: .number)
@@ -36,6 +36,8 @@ struct AssetEditor: View {
             purchaseCount = Int(asset.purchaseCount)
             purchaseDate = asset.purchaseDate ?? Date()
         }
+        .frame(minHeight: 150)
+        .fixedSize()
     }
 
     private func applyChanges() {
@@ -43,11 +45,11 @@ struct AssetEditor: View {
         asset.purchaseCount = purchaseCount > 0 ? Int32(purchaseCount) : 0
         asset.purchaseDate = purchaseDate
         try? viewContext.save()
-        showEditor = false
+        dissmiss()
     }
 
     private func closeEditor() {
-        showEditor = false
+        dissmiss()
     }
     
 }

@@ -90,7 +90,7 @@ struct ContentView: View {
     private func addPortfolio() {
         withAnimation {
             let newPortfolio = Portfolio(context: viewContext)
-            newPortfolio.name = "Portfolio \(portfolios.count)"
+            newPortfolio.name = "New portfolio"
             try? viewContext.save()
         }
     }

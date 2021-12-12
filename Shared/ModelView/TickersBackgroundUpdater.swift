@@ -81,11 +81,12 @@ class TickersBackgroundUpdater: ObservableObject {
         var tickers = Set(fetchResult)
         
         // Remove tickers which not related to any asset anymore
-        tickers.filter { $0.relatedAssets!.count == 0 }.forEach {
-            if $0.name == "Placeholder" { return }
+        let tickersToDelete = tickers.filter { $0.relatedAssets!.count == 0 }
+        tickers = tickers.filter { $0.relatedAssets!.count > 0 }
+
+        tickersToDelete.filter { $0.relatedAssets!.count == 0 }.forEach {
             self.context.delete($0)
         }
-        tickers = tickers.filter { $0.relatedAssets!.count > 0 }
         
         // Exclude already updated assets
         tickers = tickers
@@ -119,10 +120,13 @@ class TickersBackgroundUpdater: ObservableObject {
         
         getTickerPrice(ticker: ticker.symbol) { [weak self] closePrice in
             print("[TickerUpdater] Start update \(ticker.symbol)")
+            if let context = self?.context, context.deletedObjects.contains(ticker) {
+                print("[TickerUpdater] Skip \(ticker.symbol)")
+                return
+            }
             ticker.price = closePrice
             ticker.lastTimeUpdated = Date()
             self?.updateTickers()
-            
         }
     }
     

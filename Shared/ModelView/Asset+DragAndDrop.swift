@@ -57,8 +57,7 @@ extension Asset {
                     provider.loadDataRepresentation(forTypeIdentifier: TickerInfo.draggableType.identifier) { (data, error) in
                         guard let data = data else { return }
                         let decoder = JSONDecoder()
-                        guard let tickerInfo = try? decoder.decode(TickerInfo.self, from: data)
-                        else { return }
+                        guard let tickerInfo = try? decoder.decode(TickerInfo.self, from: data) else { return }
                         result[index] = Asset.fromInfo(tickerInfo, in: context)
                     }
                 default:

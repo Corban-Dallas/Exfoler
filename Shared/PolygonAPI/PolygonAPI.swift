@@ -24,6 +24,21 @@ public class PolygonAPI {
         return uc
     }()
     
+    public static func tickers(search: String, complition: @escaping (TickersResponse?, Error?) -> Void) {
+        var uc = urlComponents
+        uc.path = "/v3/reference/tickers"
+        uc.queryItems!.append(contentsOf: [
+            URLQueryItem(name: "search", value: search),
+            URLQueryItem(name: "active", value: "true"),
+            URLQueryItem(name: "sort", value: "name"),
+            URLQueryItem(name: "order", value: "asc"),
+        ])
+        guard let url = uc.url else { return }
+        print(url)
+        let request = URLRequest(url: url)
+        clouserAgent.run(request, complition: complition)
+    }
+
     public static func tickers(search: String) -> AnyPublisher<TickersResponse, Error> {
         var uc = urlComponents
         uc.path = "/v3/reference/tickers"

@@ -7,9 +7,24 @@
 
 import Foundation
 import Combine
-import PolygonKit
 
 extension PolygonAPI: AssetsProvider {
+    func tickers(search: String, complition: @escaping ([TickerInfo]?, Error?) -> Void) {
+        PolygonAPI.tickers(search: search) { response, error in
+            guard let assets = response?.results else {
+                complition(nil, error)
+                return
+            }
+            complition(assets.map {
+                TickerInfo(ticker: $0.ticker,
+                          name: $0.name,
+                          locale: $0.locale,
+                          market: $0.market,
+                          type: $0.type ?? "N/A",
+                          currency: $0.currency_name)
+            }, nil)
+        }
+    }
     func tickers(search: String) -> AnyPublisher<[TickerInfo], Error> {
         PolygonAPI.tickers(search: search)
             .map { response in

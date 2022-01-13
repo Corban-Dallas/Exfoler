@@ -52,7 +52,6 @@ class TickersBackgroundUpdater: ObservableObject {
         tickersToUpdate = getTickersNeedUpdate()
         updateTickers()
         
-        // TODO: Need make thread safe (when updating assetToUpdate value)
         updater = NotificationCenter.default.publisher(for: .NSManagedObjectContextWillSave)
             .sink { [weak self] _ in
             

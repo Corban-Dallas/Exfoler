@@ -7,8 +7,8 @@
 import Foundation
 import CoreData
 import Combine
-import PolygonKit
 
+@MainActor
 class SearchEngine: ObservableObject {
     // Assign external API confroming to AssetsProvider protocol as a source of assets
     private let assetsProvider: AssetsProvider = PolygonAPI.shared
@@ -30,7 +30,7 @@ class SearchEngine: ObservableObject {
         cancellableSearch = assetsProvider.tickers(search: text)
             .print()
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] error in
+            .sink { [weak self] _ in
                 self?.isSearching = false
             } receiveValue: { [weak self] assetsInfo in
                 self?.searchResults.append(contentsOf: assetsInfo)

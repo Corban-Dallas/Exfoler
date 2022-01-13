@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZOT-v1-5fd">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Portfolios-->
+        <scene sceneID="PID-tI-7fo">
+            <objects>
+                <navigationController title="Portfolios" id="cMz-1L-sIF" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Portfolios" image="bag" catalog="system" id="Bz4-oR-Z8P"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zhF-ms-OIS">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="0ho-00-7ie" kind="relationship" relationship="rootViewController" id="wSa-M1-Y9b"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gRu-1M-xgK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="838" y="23"/>
+        </scene>
+        <!--Portfolioss-->
+        <scene sceneID="SQh-GK-x5r">
+            <objects>
+                <viewController title="Portfolioss" id="0ho-00-7ie" customClass="PortfolioListViewController" customModule="Exfoler__iOS_" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WT0-3K-ibr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="NDv-Bz-DIy">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="U4E-VX-kKq"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="NDv-Bz-DIy" firstAttribute="leading" secondItem="U4E-VX-kKq" secondAttribute="leading" id="cO4-BT-eem"/>
+                            <constraint firstItem="NDv-Bz-DIy" firstAttribute="top" secondItem="U4E-VX-kKq" secondAttribute="top" id="epi-yR-Tyr"/>
+                            <constraint firstItem="U4E-VX-kKq" firstAttribute="trailing" secondItem="NDv-Bz-DIy" secondAttribute="trailing" id="sc4-BY-dxX"/>
+                            <constraint firstItem="U4E-VX-kKq" firstAttribute="bottom" secondItem="NDv-Bz-DIy" secondAttribute="bottom" id="zwx-OE-nE1"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Portfolios" id="f03-JZ-YSz">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="hnO-1d-1bm">
+                            <connections>
+                                <action selector="createPortfolio:" destination="0ho-00-7ie" id="Zrx-KJ-oSq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="table" destination="NDv-Bz-DIy" id="eeC-es-Z1A"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JYN-Rm-JL1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1699" y="23"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="05Q-vT-Smd">
+            <objects>
+                <viewController id="LdS-Up-qt8" customClass="SearchViewController" customModule="Exfoler__iOS_" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ytK-JL-l8l">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="RSc-oO-sfb">
+                                <rect key="frame" x="0.0" y="88" width="414" height="51"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="IeB-ra-d3n">
+                                <rect key="frame" x="0.0" y="139" width="414" height="674"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="F8V-Uv-IA8"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="IeB-ra-d3n" firstAttribute="leading" secondItem="F8V-Uv-IA8" secondAttribute="leading" id="4ex-ZI-Va6"/>
+                            <constraint firstItem="IeB-ra-d3n" firstAttribute="top" secondItem="RSc-oO-sfb" secondAttribute="bottom" id="CRG-Es-Nif"/>
+                            <constraint firstItem="RSc-oO-sfb" firstAttribute="top" secondItem="F8V-Uv-IA8" secondAttribute="top" id="CsX-Mw-xHW"/>
+                            <constraint firstItem="F8V-Uv-IA8" firstAttribute="trailing" secondItem="IeB-ra-d3n" secondAttribute="trailing" id="VQT-Ll-DPK"/>
+                            <constraint firstItem="F8V-Uv-IA8" firstAttribute="bottom" secondItem="IeB-ra-d3n" secondAttribute="bottom" id="dIQ-lf-eA4"/>
+                            <constraint firstItem="RSc-oO-sfb" firstAttribute="trailing" secondItem="F8V-Uv-IA8" secondAttribute="trailing" id="iIm-Ka-nqT"/>
+                            <constraint firstItem="RSc-oO-sfb" firstAttribute="leading" secondItem="F8V-Uv-IA8" secondAttribute="leading" id="td1-Pi-fwA"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="lLn-c1-wkT"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="searchBar" destination="RSc-oO-sfb" id="V2X-qS-bhQ"/>
+                        <outlet property="table" destination="IeB-ra-d3n" id="2ri-Rd-YlE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RPW-22-Xmb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1699" y="-658"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="qqd-tQ-43P">
+            <objects>
+                <tabBarController id="ZOT-v1-5fd" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="u3t-qW-KRC"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mOw-j2-z8g">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="uJE-5Y-Bxc" kind="relationship" relationship="viewControllers" id="fff-gT-Y6h"/>
+                        <segue destination="cMz-1L-sIF" kind="relationship" relationship="viewControllers" id="rQC-Ri-Swl"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vhN-Yr-uSf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-52" y="-335"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="grW-OX-O9a">
+            <objects>
+                <navigationController id="uJE-5Y-Bxc" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="search" id="Icn-Fw-7BU"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="PsK-FY-0Ai">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="LdS-Up-qt8" kind="relationship" relationship="rootViewController" id="SvV-0J-per"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Us-cQ-djD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="838" y="-658"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="bag" catalog="system" width="128" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

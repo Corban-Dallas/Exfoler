@@ -1,7 +1,6 @@
 # Exfoler
 
-Exfoler is a macOS app allowing to get actual financial data of assets from external database (through PolygonAPI) and manage & store them in local portfolios. Network layer was implemented as separate package (providing support of PolygonAPI in Swift) and was injected in project through protocol.
-
+MacOS and iOS versions of App which share model layer. Application allows to get actual financial data of assets from external database (through PolygonAPI) and manage & store them in local portfolios. Network layer was implemented as PolygonAPI injected in application throug AssetsProvider protocol abstraction.
 Stack for macOS version:
 - MVVM
 - SwiftUI

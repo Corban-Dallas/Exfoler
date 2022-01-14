@@ -30,12 +30,15 @@ class SearchViewController: UIViewController {
         
         // Table
         table.dataSource = self
+        table.delegate = self
+        table.allowsSelection = true
         
         // Activity indicator view
         activityView = UIActivityIndicatorView(style: .large)
         activityView?.center = view.center
         activityView?.hidesWhenStopped = true
         view.addSubview(activityView!)
+        
     }
     //
     // MARK: Methods
@@ -44,17 +47,6 @@ class SearchViewController: UIViewController {
         self.table.reloadData()
         isSearching ? activityView?.startAnimating() : activityView?.stopAnimating()
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 //
 // MARK: - SearchBar support
@@ -85,7 +77,7 @@ extension SearchViewController: UISearchBarDelegate {
 //
 // MARK: - Table support
 //
-extension SearchViewController: UITableViewDataSource {
+extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         searchResults.count
     }
@@ -95,5 +87,11 @@ extension SearchViewController: UITableViewDataSource {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         cell.textLabel?.text = text
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let tickerViewController = TickerViewController(searchResults[indexPath.row])
+        navigationController?.pushViewController(tickerViewController, animated: true)
+
     }
 }

@@ -49,6 +49,9 @@
 		F7E87F2027907A1F008FC842 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F2ADC42720126700CFBF89 /* Asset.swift */; };
 		F7E87F2127907A1F008FC842 /* Portfolio.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F2ADC22720111F00CFBF89 /* Portfolio.swift */; };
 		F7E87F2327907A6E008FC842 /* Exfoler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F7AFCEB8271D5B2600D56A71 /* Exfoler.xcdatamodeld */; };
+		F7E87F252790B997008FC842 /* TickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E87F242790B997008FC842 /* TickerViewController.swift */; };
+		F7E87F2727918B99008FC842 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E87F2627918B99008FC842 /* Utility.swift */; };
+		F7E87F2827918B99008FC842 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E87F2627918B99008FC842 /* Utility.swift */; };
 		F7E8E39927305E5E00FD54F6 /* Asset+DragAndDrop.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E8E39827305E5E00FD54F6 /* Asset+DragAndDrop.swift */; };
 		F7F2ADC32720111F00CFBF89 /* Portfolio.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F2ADC22720111F00CFBF89 /* Portfolio.swift */; };
 		F7F2ADC52720126700CFBF89 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F2ADC42720126700CFBF89 /* Asset.swift */; };
@@ -122,6 +125,8 @@
 		F7AFCEF2271F079F00D56A71 /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
 		F7AFCF0F271F593000D56A71 /* SearchResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsView.swift; sourceTree = "<group>"; };
 		F7D0F8A0279075F300FF5A83 /* PortfolioListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioListViewController.swift; sourceTree = "<group>"; };
+		F7E87F242790B997008FC842 /* TickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerViewController.swift; sourceTree = "<group>"; };
+		F7E87F2627918B99008FC842 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		F7E8E39827305E5E00FD54F6 /* Asset+DragAndDrop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Asset+DragAndDrop.swift"; sourceTree = "<group>"; };
 		F7E8E3A22730673F00FD54F6 /* Exfoler--macOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Exfoler--macOS--Info.plist"; sourceTree = "<group>"; };
 		F7F2ADC22720111F00CFBF89 /* Portfolio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Portfolio.swift; sourceTree = "<group>"; };
@@ -170,6 +175,7 @@
 				F79DEDCF27906BF3009D6C92 /* AppDelegate.swift */,
 				F79DEDD127906BF3009D6C92 /* SceneDelegate.swift */,
 				F79DEDE127906FC6009D6C92 /* SearchViewController.swift */,
+				F7E87F242790B997008FC842 /* TickerViewController.swift */,
 				F7D0F8A0279075F300FF5A83 /* PortfolioListViewController.swift */,
 				F79DEDD527906BF3009D6C92 /* Main.storyboard */,
 				F79DEDDA27906BF3009D6C92 /* LaunchScreen.storyboard */,
@@ -197,6 +203,7 @@
 				F7AFCEE7271D65A100D56A71 /* Model */,
 				F7E87F152790793F008FC842 /* PolygonAPI */,
 				F7F2ADCB2721BF1100CFBF89 /* ModelView */,
+				F7E87F2627918B99008FC842 /* Utility.swift */,
 				F7AFCEB8271D5B2600D56A71 /* Exfoler.xcdatamodeld */,
 			);
 			path = Shared;
@@ -417,6 +424,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7E87F2827918B99008FC842 /* Utility.swift in Sources */,
 				F7D0F89F2790733C00FF5A83 /* SearchEngine.swift in Sources */,
 				F7E87F1B279079C3008FC842 /* AssetsProvider.swift in Sources */,
 				F7E87F1927907981008FC842 /* PolygonAPI.swift in Sources */,
@@ -424,6 +432,7 @@
 				F7E87F1827907981008FC842 /* PolygonAPI.Error.swift in Sources */,
 				F7D0F8A1279075F300FF5A83 /* PortfolioListViewController.swift in Sources */,
 				F7E87F1D27907A19008FC842 /* Errors.swift in Sources */,
+				F7E87F252790B997008FC842 /* TickerViewController.swift in Sources */,
 				F7E87F1A279079C3008FC842 /* PolygonAPI+AssetsProvider.swift in Sources */,
 				F7E87F1F27907A1F008FC842 /* Ticker.swift in Sources */,
 				F7E87F1E27907A1F008FC842 /* Persistence.swift in Sources */,
@@ -452,6 +461,7 @@
 				F7F2ADC52720126700CFBF89 /* Asset.swift in Sources */,
 				F751F7532750A157004F698A /* Ticker.swift in Sources */,
 				F7F2ADCA2721BEE500CFBF89 /* SearchEngine.swift in Sources */,
+				F7E87F2727918B99008FC842 /* Utility.swift in Sources */,
 				F7AFCECC271D5B2700D56A71 /* Exfoler.xcdatamodeld in Sources */,
 				F7D0F8B02790791800FF5A83 /* PolygonAPI.Responses.swift in Sources */,
 				F751F74B273DB48E004F698A /* TickerInfo+ItemProvider.swift in Sources */,

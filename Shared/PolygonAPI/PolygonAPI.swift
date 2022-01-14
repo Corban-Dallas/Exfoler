@@ -77,6 +77,7 @@ public class PolygonAPI {
     public static func previousClose(ticker: String, complition: @escaping (PreviousCloseResponse?, Error?) -> Void ) {
         var uc = urlComponents
         uc.path = "/v2/aggs/ticker/\(ticker)/prev"
+        print(uc.url?.absoluteString)
         let request = URLRequest(url: uc.url!)
         clouserAgent.run(request) { response, error in
             complition(response, error)

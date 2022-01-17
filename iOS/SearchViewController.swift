@@ -12,11 +12,13 @@ class SearchViewController: UIViewController {
     // MARK: - Properties
     //
     // Data
-    private var provider: AssetsProvider = PolygonAPI.shared
+    private let provider: AssetsProvider = PolygonAPI.shared
     private var searchResults = [TickerInfo]()
     
     // Views & View logic
     @IBOutlet weak var table: UITableView!
+    private let cellID = "tickerCell"
+    
     @IBOutlet weak var searchBar: UISearchBar!
     private var activityView: UIActivityIndicatorView?
     private var isSearching = false
@@ -27,8 +29,9 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         // SearchBar
         searchBar.delegate = self
+        title = "Search"
         
-        // Table
+        // Table & Cell
         table.dataSource = self
         table.delegate = self
         table.allowsSelection = true
@@ -38,7 +41,6 @@ class SearchViewController: UIViewController {
         activityView?.center = view.center
         activityView?.hidesWhenStopped = true
         view.addSubview(activityView!)
-        
     }
     //
     // MARK: Methods
@@ -59,18 +61,22 @@ extension SearchViewController: UISearchBarDelegate {
         updateView()
         let text = searchBar.text ?? ""
         provider.tickers(search: text) { [weak self] tickers, error in
+            // Update gui in the end
+            defer {
+                self?.isSearching = false
+                DispatchQueue.main.async {
+                    self?.updateView()
+                }
+            }
+            // Check error
             if let error = error {
                 print(error.localizedDescription)
                 return
             }
-            guard let tickers = tickers else { return }
             
-            // Update data and views
-            DispatchQueue.main.async {
-                self?.searchResults.append(contentsOf: tickers)
-                self?.isSearching = false
-                self?.updateView()
-            }
+            // Update data
+            guard let tickers = tickers else { return }
+            self?.searchResults.append(contentsOf: tickers)
         }
     }
 }
@@ -84,14 +90,21 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let text = searchResults[indexPath.row].name
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.textLabel?.text = text
+        let cell = table.dequeueReusableCell(withIdentifier: cellID) ?? UITableViewCell(style: .default, reuseIdentifier: cellID)
+        
+        var config = UIListContentConfiguration.valueCell()
+        config.text = text
+        cell.contentConfiguration = config
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let tickerViewController = TickerViewController(searchResults[indexPath.row])
         navigationController?.pushViewController(tickerViewController, animated: true)
-
+        table.deselectRow(at: indexPath, animated: false)
+    }
+    
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        true
     }
 }

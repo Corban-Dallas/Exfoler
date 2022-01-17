@@ -20,7 +20,6 @@ class TickerViewController: UIViewController {
     private var label: UILabel?
     private var table: UITableView?
     var tableRows = ["Ticker", "Market", "Locale", "Type", "Price", "Currency"]
-    private let cellID = "cell"
     
     //
     // MARK: - Initialization
@@ -47,8 +46,6 @@ class TickerViewController: UIViewController {
         table?.dataSource = self
         table?.delegate = self
         table?.frame = self.view.bounds
-        table?.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
-        table?.sectionHeaderTopPadding = 10
         self.view.addSubview(table!)
         
         updatePrice()
@@ -79,42 +76,13 @@ class TickerViewController: UIViewController {
 // MARK: - Table support
 //
 extension TickerViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // Create cell
-        let cell = table!.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
-        var config = UIListContentConfiguration.valueCell()
-
-        // Add to portfolio button
-        if indexPath.section == 1 {
-            config.textProperties.color = .systemBlue
-            config.text = "Add to portfolio"
-            config.image = UIImage(systemName: "plus")
-            cell.contentConfiguration = config
-            return cell
-        }
-        
-        // Configure cell
-        let text = tableRows[indexPath.row]
-        var secondaryText: String?
-
-        switch text {
-        case "Ticker": secondaryText = ticker?.ticker
-        case "Locale": secondaryText = ticker?.locale
-        case "Market": secondaryText = ticker?.market
-        case "Type": secondaryText = ticker?.type
-        case "Price": secondaryText = currentPrice?.toString()
-        case "Currency": secondaryText = ticker?.currency
-        default: break
-        }
-                
-        config.text = text
-        config.secondaryText = secondaryText ?? "-"
-        cell.contentConfiguration = config
-        return cell
+    // MARK: Configure sections
+    func numberOfSections(in tableView: UITableView) -> Int {
+        // First section contains all ticker info.
+        // Second section contains only interaction button
+        2
     }
     
-    // Configure sections
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         section == 0 ? tableRows.count : 1
     }
@@ -122,8 +90,39 @@ extension TickerViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         section == 0 ? "Ticker details" : " "
     }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        2
+
+    // MARK: Configure cellss
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // Create cell
+        let cell = UITableViewCell()
+        var config = UIListContentConfiguration.valueCell()
+                
+        if indexPath.section == 0 {
+            // Configure ticker info cells
+            let text = tableRows[indexPath.row]
+            var secondaryText: String?
+
+            switch text {
+            case "Ticker": secondaryText = ticker?.ticker
+            case "Locale": secondaryText = ticker?.locale
+            case "Market": secondaryText = ticker?.market
+            case "Type": secondaryText = ticker?.type
+            case "Price": secondaryText = currentPrice?.toString()
+            case "Currency": secondaryText = ticker?.currency
+            default: break
+            }
+                    
+            config.text = text
+            config.secondaryText = secondaryText ?? "-"
+            cell.contentConfiguration = config
+            return cell
+        }
+        
+        // Else configure "Add to portfolio" button
+        config.textProperties.color = .systemBlue
+        config.text = "Add to portfolio"
+        config.image = UIImage(systemName: "plus")
+        cell.contentConfiguration = config
+        return cell
     }
 }

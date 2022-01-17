@@ -90,12 +90,16 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let text = searchResults[indexPath.row].name
-        let cell = table.dequeueReusableCell(withIdentifier: cellID) ?? UITableViewCell(style: .default, reuseIdentifier: cellID)
+        var cell = table.dequeueReusableCell(withIdentifier: cellID)
+        if cell == nil {
+            cell = UITableViewCell(style: .default, reuseIdentifier: cellID)
+            cell?.accessoryType = .disclosureIndicator
+        }
         
         var config = UIListContentConfiguration.valueCell()
         config.text = text
-        cell.contentConfiguration = config
-        return cell
+        cell?.contentConfiguration = config
+        return cell!
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

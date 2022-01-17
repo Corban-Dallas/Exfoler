@@ -9,10 +9,12 @@ import UIKit
 import CoreData
 
 class PortfolioListViewController: UIViewController {
+    private let cellID = "portfolioCell"
     //
     // MARK: - Properties
     //
     // Data
+    private let dataStore: DataStore = PersistenceController.shared
     private let context = PersistenceController.shared.container.viewContext
     private var portfolios = [Portfolio]()
     
@@ -32,9 +34,7 @@ class PortfolioListViewController: UIViewController {
     //
     @IBAction func createPortfolio(_ sender: UIBarButtonItem) {
         // Create new portfolio
-        let portfolio = Portfolio(context: context)
-        portfolio.name = "New portfolio"
-        try? context.save()
+        dataStore.newPortfolio(name: "New portfolio \(portfolios.count)")
         updateView()
     }
     //
@@ -47,9 +47,7 @@ class PortfolioListViewController: UIViewController {
     
     func refetchPortfolios() {
         // Fetch portfolios from database
-        let request = NSFetchRequest<Portfolio>(entityName: "Portfolio")
-        guard let result = try? context.fetch(request) else { return }
-        portfolios = Array(result)
+        portfolios = PersistenceController.shared.allPortfolios()
     }
     /*
     // MARK: - Navigation
@@ -71,16 +69,24 @@ extension PortfolioListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.textLabel?.text = portfolios[indexPath.row].name
-        return cell
+        var cell = table.dequeueReusableCell(withIdentifier: cellID)
+        if cell == nil {
+            cell = UITableViewCell(style: .default, reuseIdentifier: cellID)
+            cell?.accessoryType = .disclosureIndicator
+        }
+                
+        var config = UIListContentConfiguration.valueCell()
+        config.text = portfolios[indexPath.row].name
+        cell?.contentConfiguration = config
+        return cell!
     }
     
     // Delete on swipe
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            context.delete(portfolios[indexPath.row])
-            try? context.save()
+            dataStore.delete(portfolios[indexPath.row])
+            refetchPortfolios()
+            table.deleteRows(at: [indexPath], with: .automatic)
             updateView()
         }
     }

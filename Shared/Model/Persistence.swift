@@ -11,6 +11,7 @@ struct PersistenceController {
     static let shared = PersistenceController()
     
     public var placeholderTicker: Ticker
+    public var moc: NSManagedObjectContext
 
 //    static var preview: PersistenceController = {
 //        let result = PersistenceController(inMemory: true)
@@ -34,6 +35,8 @@ struct PersistenceController {
 
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "Exfoler")
+        moc = container.viewContext
+        
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }

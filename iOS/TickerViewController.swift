@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class TickerViewController: UIViewController {
     //
@@ -13,14 +14,16 @@ class TickerViewController: UIViewController {
     //
     // Data
     var ticker: TickerInfo?
-    private let priceProvider: AssetsProvider = PolygonAPI.shared
     private var currentPrice: Double?
+
+    private let priceProvider: AssetsProvider = PolygonAPI.shared
+    
+    private let dataStore: DataStore = PersistenceController.shared
 
     // Views
     private var label: UILabel?
     private var table: UITableView?
     var tableRows = ["Ticker", "Market", "Locale", "Type", "Price", "Currency"]
-    
     //
     // MARK: - Initialization
     //
@@ -51,14 +54,17 @@ class TickerViewController: UIViewController {
         updatePrice()
     }
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
         // Handle rotation
-        super.viewWillTransition(to: size, with: coordinator)
-        table?.frame = CGRect(origin: .zero, size: size)
+        table?.frame = CGRect(origin: .zero, size: view.bounds.size)
+
     }
     //
     // MARK: - Methods
     //
+    
+    // UI blocks and logic
     private func updatePrice() {
         priceProvider.previousClose(ticker: ticker?.ticker ?? "") { [weak self] price, error in
             if let error = error {
@@ -71,6 +77,26 @@ class TickerViewController: UIViewController {
             }
         }
     }
+        
+    private func addToPortfolioSheet() -> UIAlertController {
+        let sheet = UIAlertController(title: "Add to", message: nil, preferredStyle: .actionSheet)
+        
+        // Portfolios section
+        dataStore.allPortfolios().forEach { portfolio in
+            let action = UIAlertAction(title: portfolio.name, style: .default) { [weak self] _ in
+                guard let ticker = self?.ticker else { return }
+                self?.dataStore.add(ticker, to: portfolio)
+            }
+            sheet.addAction(action)
+        }
+        
+        // Cancel action
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        sheet.addAction(cancelAction)
+        
+        return sheet
+    }
+    
 }
 //
 // MARK: - Table support
@@ -118,11 +144,23 @@ extension TickerViewController: UITableViewDataSource, UITableViewDelegate {
             return cell
         }
         
-        // Else configure "Add to portfolio" button
+        // Or configure "Add to portfolio" button
         config.textProperties.color = .systemBlue
         config.text = "Add to portfolio"
         config.image = UIImage(systemName: "plus")
         cell.contentConfiguration = config
         return cell
     }
+    
+    // MARK: User interaction
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section != 1 { return }
+        
+        // Handle button tap
+        let sheet = addToPortfolioSheet()
+        present(sheet, animated: true)
+        table?.deselectRow(at: indexPath, animated: true)
+    }
+    
+    
 }
